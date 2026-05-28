@@ -1005,29 +1005,117 @@
       flex-shrink: 0;
     }
 
-    .reviews-hidden { display: none; }
-
-    .load-more-wrap {
-      text-align: center;
-      margin-top: 44px;
-    }
-
-    .btn-load-more {
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      padding: 14px 36px;
-      border-radius: 6px;
+    /* Reviews dropdown toggle */
+    .reviews-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 32px;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
+      user-select: none;
+      transition: border-color 0.25s, background 0.25s;
+      margin-top: 36px;
     }
 
-    .btn-load-more:hover {
-      background: var(--gold);
-      color: var(--dark);
+    .reviews-toggle:hover {
+      border-color: rgba(201,168,76,0.5);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .reviews-toggle.open {
+      border-radius: 12px 12px 0 0;
+      border-color: rgba(201,168,76,0.45);
+      border-bottom-color: transparent;
+    }
+
+    .reviews-toggle-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .reviews-toggle-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .reviews-toggle-label h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .reviews-toggle-label span {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .reviews-toggle-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .reviews-count-pill {
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.05em;
+    }
+
+    .reviews-toggle-arrow {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      transition: transform 0.35s ease, border-color 0.25s;
+      flex-shrink: 0;
+    }
+
+    .reviews-toggle.open .reviews-toggle-arrow {
+      transform: rotate(180deg);
+      border-color: rgba(201,168,76,0.5);
+    }
+
+    .reviews-panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(201,168,76,0.45);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      background: rgba(201,168,76,0.02);
+    }
+
+    .reviews-panel.open {
+      max-height: 9999px;
+      transition: max-height 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reviews-panel-inner {
+      padding: 28px;
     }
 
     @media (max-width: 768px) {
@@ -1165,6 +1253,7 @@
     </div>
   </div>
 
+  <!-- 4 featured reviews always visible -->
   <div class="review-grid" id="reviewGrid">
 
     <div class="review-card">
@@ -1207,442 +1296,292 @@
       </div>
     </div>
 
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">I've been looking for the perfect rug for my hallway for months. Found 1st Class Rugs on WhatsApp and within an hour I had found exactly what I was after. Delivery to Limerick was super fast. Delighted with it!</div>
-      <div class="review-footer">
-        <div class="review-avatar">NW</div>
-        <div class="review-meta"><strong>Niamh Walsh</strong><span>Limerick City</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Ordered a beautiful traditional-style rug for my mother's house and she was absolutely over the moon with it. The craftsmanship is top notch. Really easy to deal with and very fair prices. Will definitely be back.</div>
-      <div class="review-footer">
-        <div class="review-avatar">CD</div>
-        <div class="review-meta"><strong>Ciarán Doyle</strong><span>Kilkenny City</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Got a gorgeous cream and gold rug for my bedroom — it completely transformed the room. The seller was brilliant, very patient with all my questions. Delivery was prompt and it was packaged really well. Highly recommend.</div>
-      <div class="review-footer">
-        <div class="review-avatar">FN</div>
-        <div class="review-meta"><strong>Fionnuala Ní Bhriain</strong><span>Sligo Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Third time ordering from here now. Every single rug has been perfect. Brilliant quality, fair prices, and the service is second to none. There's nowhere else I'd go for rugs at this stage. Keep up the great work!</div>
-      <div class="review-footer">
-        <div class="review-avatar">SB</div>
-        <div class="review-meta"><strong>Seamus Brennan</strong><span>Tipperary Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">I wasn't sure what size to go for and the lad helped me figure out exactly what would work in my sitting room. The rug arrived and it fits perfectly. So impressed with the whole experience. Fantastic company.</div>
-      <div class="review-footer">
-        <div class="review-avatar">CD</div>
-        <div class="review-meta"><strong>Caoimhe Dolan</strong><span>Roscommon Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">All the way up in Donegal and they still delivered without any hassle. The rug is absolutely beautiful — heavy, well made, and the pattern is stunning. Completely changed the look of my sitting room. Mad value for money.</div>
-      <div class="review-footer">
-        <div class="review-avatar">PO</div>
-        <div class="review-meta"><strong>Pádraig Ó Murchú</strong><span>Donegal Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">I did a full living room renovation and this rug was the centrepiece. It pulls the whole room together beautifully. The photos on the website don't do it justice — it's even better in person. Couldn't be happier.</div>
-      <div class="review-footer">
-        <div class="review-avatar">RO</div>
-        <div class="review-meta"><strong>Rachel O'Sullivan</strong><span>Waterford City</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Super easy to deal with over WhatsApp. Got a large rug delivered to Dún Laoghaire without a bother. It's plush, well made, and looks incredible in our dining room. My wife is absolutely thrilled with it.</div>
-      <div class="review-footer">
-        <div class="review-avatar">BF</div>
-        <div class="review-meta"><strong>Brian Fitzpatrick</strong><span>Dún Laoghaire</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <!-- Hidden cards shown after Load More -->
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Bought two rugs for the new house. Both are stunning — great quality and far better value than anything I'd seen in the shops. Delivery to Mayo was quick too. Will definitely be coming back for more. Highly recommended!</div>
-      <div class="review-footer">
-        <div class="review-avatar">SC</div>
-        <div class="review-meta"><strong>Sinéad Connolly</strong><span>Westport, Mayo</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Got a massive rug for my open-plan kitchen/living area. It fits perfectly and softens the whole room. The service was friendly and efficient — answered all my WhatsApp queries straight away. Couldn't ask for more.</div>
-      <div class="review-footer">
-        <div class="review-avatar">JQ</div>
-        <div class="review-meta"><strong>James Quinn</strong><span>Dundalk, Louth</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Was looking for something specific and they had exactly what I wanted. Delivery to Kildare was next day. Rug is thick, luxurious and the colours are gorgeous. My whole family has been commenting on it. Brilliant find!</div>
-      <div class="review-footer">
-        <div class="review-avatar">OH</div>
-        <div class="review-meta"><strong>Orla Higgins</strong><span>Newbridge, Kildare</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Came across 1st Class Rugs through a friend's recommendation and I'm so glad I did. Great selection, brilliant service and the rug looks amazing in our front room. Quick delivery to Longford too. Would recommend to everyone.</div>
-      <div class="review-footer">
-        <div class="review-avatar">LS</div>
-        <div class="review-meta"><strong>Liam Sheridan</strong><span>Longford Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">I was redecorating my sitting room and needed a statement rug. Found exactly what I was looking for here. The quality is outstanding — you can tell it's built to last. Great communication throughout too.</div>
-      <div class="review-footer">
-        <div class="review-avatar">AM</div>
-        <div class="review-meta"><strong>Aisling Moran</strong><span>Athlone, Westmeath</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Fair play to these guys — the rug is class. Honestly better quality than stuff I've seen in expensive home stores. Easy to enquire over WhatsApp and delivery to Offaly was no problem at all. Delighted with it.</div>
-      <div class="review-footer">
-        <div class="review-avatar">CF</div>
-        <div class="review-meta"><strong>Conor Flanagan</strong><span>Tullamore, Offaly</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Bought a beautiful large rug as a housewarming gift for my daughter. She was absolutely thrilled with it. Amazing quality and the price was very reasonable. The whole process from enquiry to delivery was seamless.</div>
-      <div class="review-footer">
-        <div class="review-avatar">MD</div>
-        <div class="review-meta"><strong>Margaret Dunne</strong><span>Portlaoise, Laois</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Spotted a rug on the website and WhatsApp'd straight away. It was still available and arrived at my door in north Dublin the next morning. Looks incredible in my living room. Great price, great service. Highly recommend!</div>
-      <div class="review-footer">
-        <div class="review-avatar">PR</div>
-        <div class="review-meta"><strong>Patrick Ryan</strong><span>Swords, Dublin</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Just moved into a new place and needed rugs for a few rooms. Got two from here and both are absolutely gorgeous. Good value, fast delivery to Carlow, and the guy was lovely to deal with. Will be back for more!</div>
-      <div class="review-footer">
-        <div class="review-avatar">EC</div>
-        <div class="review-meta"><strong>Emma Cullen</strong><span>Carlow Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Sent a WhatsApp to ask a few questions and got an instant response with extra pictures and dimensions. Couldn't have asked for better customer service. The rug itself is beautiful — heavy, well made, and perfect in my hallway.</div>
-      <div class="review-footer">
-        <div class="review-avatar">DM</div>
-        <div class="review-meta"><strong>Donal McCarthy</strong><span>Tralee, Kerry</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Absolutely love my new rug! It's plush, soft underfoot and the pattern is stunning. I've had loads of compliments on it already. Very easy to buy — just WhatsApp and it was sorted. Delivery to Clare was quick and hassle-free.</div>
-      <div class="review-footer">
-        <div class="review-avatar">SN</div>
-        <div class="review-meta"><strong>Sorcha Ní Fhaoláin</strong><span>Ennis, Clare</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Great rug, great price and great service. The seller was really helpful and made sure I got exactly the right one for my room. It arrived perfectly rolled and in great condition. Very happy customer in Tipperary!</div>
-      <div class="review-footer">
-        <div class="review-avatar">MK</div>
-        <div class="review-meta"><strong>Michael Keating</strong><span>Nenagh, Tipperary</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">I've bought rugs from shops and online before but nothing comes close to the quality here. The rug is thick, the colours are rich, and it's clearly going to last for years. Arrived fast to Dundalk. Absolutely buzzing with it!</div>
-      <div class="review-footer">
-        <div class="review-avatar">CN</div>
-        <div class="review-meta"><strong>Ciara Nolan</strong><span>Dundalk, Louth</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Bought a gorgeous large rug for my living room. The quality is unreal — it's so soft and the colours are exactly as shown. Quick delivery to Wexford and great communication throughout. Will definitely be recommending to friends.</div>
-      <div class="review-footer">
-        <div class="review-avatar">SM</div>
-        <div class="review-meta"><strong>Shane Madden</strong><span>Wexford Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Found this page while looking for rugs and I'm so glad I did. The selection is great, the prices are fair and the service is excellent. My rug arrived quickly to Meath and looks stunning in the dining room. Would recommend!</div>
-      <div class="review-footer">
-        <div class="review-avatar">YB</div>
-        <div class="review-meta"><strong>Yvonne Brady</strong><span>Navan, Meath</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Ordered a large rug for the sitting room and the whole experience was flawless. Quick reply on WhatsApp, fair price, and it arrived in Letterkenny in great condition. Looks amazing — completely transformed the room. 10/10!</div>
-      <div class="review-footer">
-        <div class="review-avatar">KM</div>
-        <div class="review-meta"><strong>Kevin Murray</strong><span>Letterkenny, Donegal</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">I wasn't expecting such great quality for the price. The rug is beautiful — heavy, well finished, and the pattern is stunning. Delivery to Monaghan was fast and the seller was brilliant to deal with. Very happy customer!</div>
-      <div class="review-footer">
-        <div class="review-avatar">DC</div>
-        <div class="review-meta"><strong>Deirdre Cassidy</strong><span>Monaghan Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">My sitting room has never looked so well! The rug is exactly as described — thick, rich and absolutely class. The seller was sound and very helpful. Came all the way from Galway to Roscommon in no time. Great stuff altogether.</div>
-      <div class="review-footer">
-        <div class="review-avatar">TF</div>
-        <div class="review-meta"><strong>Tommy Farrell</strong><span>Boyle, Roscommon</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Brilliant experience from start to finish. Sent a WhatsApp, got helpful replies straight away, and the rug arrived next day. It's soft, well made and looks absolutely stunning in my living room. 100% recommend to anyone looking for a quality rug!</div>
-      <div class="review-footer">
-        <div class="review-avatar">CO</div>
-        <div class="review-meta"><strong>Claire O'Reilly</strong><span>Naas, Kildare</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Picked up a beautiful rug for our new house. Excellent quality and the colour is exactly as shown in the photos. Very easy to deal with and great value for money. Quick delivery to Ennis. Couldn't be more pleased with it!</div>
-      <div class="review-footer">
-        <div class="review-avatar">GL</div>
-        <div class="review-meta"><strong>Gerard Lyons</strong><span>Ennis, Clare</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Ordered up north and they delivered without any issue. The rug is absolutely gorgeous — exactly what my living room needed. Super easy to deal with on WhatsApp and the price was very fair. Would definitely order again!</div>
-      <div class="review-footer">
-        <div class="review-avatar">BM</div>
-        <div class="review-meta"><strong>Bronagh McAuley</strong><span>Newry, Co. Down</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Bought a gorgeous patterned rug for the dining room and it's transformed the whole space. The pile is deep and plush — really premium quality. The seller was so easy to deal with and delivery to Thurles was super fast.</div>
-      <div class="review-footer">
-        <div class="review-avatar">LH</div>
-        <div class="review-meta"><strong>Lorraine Hennessy</strong><span>Thurles, Tipperary</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Very impressed with the quality and the service. I messaged about a rug I'd seen on the website and within an hour it was sorted and paid for. Arrived in Castlebar two days later in perfect condition. Dead happy with it!</div>
-      <div class="review-footer">
-        <div class="review-avatar">AC</div>
-        <div class="review-meta"><strong>Aidan Costello</strong><span>Castlebar, Mayo</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Got a stunning rug for my bedroom — it's so soft underfoot and the colour is a perfect match for my décor. The seller was so accommodating and delivery to Killarney was hassle-free. Would absolutely recommend to anyone!</div>
-      <div class="review-footer">
-        <div class="review-avatar">UO</div>
-        <div class="review-meta"><strong>Úna O'Dwyer</strong><span>Killarney, Kerry</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Ordered for the first time and was seriously impressed. Quick replies, great advice, and the rug arrived in perfect condition all the way to north Cork. Quality is top notch — much better than high street stores. Will order again!</div>
-      <div class="review-footer">
-        <div class="review-avatar">SB</div>
-        <div class="review-meta"><strong>Stephen Barry</strong><span>Fermoy, Cork</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Very professional service. The rug I got is absolutely beautiful — great pattern, fantastic quality and really good value. Delivered quickly to Drogheda and arrived well wrapped. Everyone who's visited has commented on how lovely it is!</div>
-      <div class="review-footer">
-        <div class="review-avatar">HS</div>
-        <div class="review-meta"><strong>Helen Smyth</strong><span>Drogheda, Louth</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Fuair mé ruga iontach ar fheabhas — cáilíocht den scoth agus praghas réasúnta. Sheol sé go Dún na nGall gan stró ar bith. Tá mé thar a bheith sásta leis. Molaim go hard é do cách!</div>
-      <div class="review-footer">
-        <div class="review-avatar">RO</div>
-        <div class="review-meta"><strong>Ruairí Ó Gallchóir</strong><span>Falcarragh, Donegal</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Was a bit unsure about buying a rug without seeing it first but I needn't have worried — it was exactly as described and even better than expected. Delivery to Portlaoise was really quick. So glad I went for it. Absolutely love it!</div>
-      <div class="review-footer">
-        <div class="review-avatar">JT</div>
-        <div class="review-meta"><strong>Jennifer Toomey</strong><span>Portlaoise, Laois</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Brilliant service from beginning to end. The rug I ordered is stunning — exactly the right size and colour for our living room. Delivered to Gorey in no time and packaged perfectly. Couldn't recommend these guys highly enough!</div>
-      <div class="review-footer">
-        <div class="review-avatar">CW</div>
-        <div class="review-meta"><strong>Colm Whelan</strong><span>Gorey, Wexford</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Ceannnaigh mé ruga álainn do mo sheomra suí. Cáilíocht den chéad scoth agus an tseirbhís go hiontach. Seachadadh go Gaillimh go tapa. Tá áthas an domhain orm leis. Go raibh míle maith agaibh!</div>
-      <div class="review-footer">
-        <div class="review-avatar">MN</div>
-        <div class="review-meta"><strong>Máire Ní Cheallaigh</strong><span>An Cheathrú Rua, Galway</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Needed a rug quickly for a spare room before guests arrived and they came through — ordered in the morning and it was at my door in Cavan by next day. Absolute quality and brilliant service. Saved the day! Would recommend to anyone.</div>
-      <div class="review-footer">
-        <div class="review-avatar">PC</div>
-        <div class="review-meta"><strong>Paul Corrigan</strong><span>Cavan Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Really lovely rugs and brilliant customer service. The seller went above and beyond to help me choose the right one. It arrived to Tullamore quickly and looks absolutely gorgeous in my hallway. Can't recommend them enough — class!</div>
-      <div class="review-footer">
-        <div class="review-avatar">TM</div>
-        <div class="review-meta"><strong>Tracey Mullan</strong><span>Tullamore, Offaly</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Outstanding quality and outstanding service. I've bought several rugs from different places over the years and these are by far the best. Great patterns, great pile, and great value. Delivered to Clare without any issues. Highly recommended!</div>
-      <div class="review-footer">
-        <div class="review-avatar">BO</div>
-        <div class="review-meta"><strong>Brendan O'Halloran</strong><span>Ennis, Clare</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Bought a beautiful runner for my hallway and a large rug for the sitting room. Both arrived quickly and are absolutely gorgeous. The seller was so helpful and friendly. By far the best place to buy rugs in Ireland. Will be back!</div>
-      <div class="review-footer">
-        <div class="review-avatar">MO</div>
-        <div class="review-meta"><strong>Michelle O'Toole</strong><span>Bray, Wicklow</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
-    <div class="review-card reviews-hidden">
-      <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">First time buying from here and definitely won't be the last. The rug is absolutely class — thick, beautiful pattern and great quality. WhatsApp communication was instant and delivery to Galway was the next day. Couldn't be happier!</div>
-      <div class="review-footer">
-        <div class="review-avatar">DK</div>
-        <div class="review-meta"><strong>Damien Kennedy</strong><span>Ballinasloe, Galway</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
-    </div>
-
   </div>
 
-  <div class="load-more-wrap" id="loadMoreWrap">
-    <button class="btn-load-more" id="loadMoreBtn">Show All 45 Reviews</button>
+  <!-- Dropdown toggle for remaining 41 reviews -->
+  <div class="reviews-toggle" id="reviewsToggle">
+    <div class="reviews-toggle-left">
+      <div class="reviews-toggle-icon">⭐</div>
+      <div class="reviews-toggle-label">
+        <h3>Read All 41 More Reviews</h3>
+        <span>From customers across every county in Ireland</span>
+      </div>
+    </div>
+    <div class="reviews-toggle-right">
+      <div class="reviews-count-pill">41 More</div>
+      <div class="reviews-toggle-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
   </div>
+
+  <!-- Collapsible panel with the remaining 41 reviews -->
+  <div class="reviews-panel" id="reviewsPanel">
+    <div class="reviews-panel-inner">
+      <div class="review-grid">
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">I've been looking for the perfect rug for my hallway for months. Found 1st Class Rugs on WhatsApp and within an hour I had found exactly what I was after. Delivery to Limerick was super fast. Delighted with it!</div>
+          <div class="review-footer"><div class="review-avatar">NW</div><div class="review-meta"><strong>Niamh Walsh</strong><span>Limerick City</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Ordered a beautiful traditional-style rug for my mother's house and she was absolutely over the moon with it. The craftsmanship is top notch. Really easy to deal with and very fair prices. Will definitely be back.</div>
+          <div class="review-footer"><div class="review-avatar">CD</div><div class="review-meta"><strong>Ciarán Doyle</strong><span>Kilkenny City</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Got a gorgeous cream and gold rug for my bedroom — it completely transformed the room. The seller was brilliant, very patient with all my questions. Delivery was prompt and it was packaged really well. Highly recommend.</div>
+          <div class="review-footer"><div class="review-avatar">FN</div><div class="review-meta"><strong>Fionnuala Ní Bhriain</strong><span>Sligo Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Third time ordering from here now. Every single rug has been perfect. Brilliant quality, fair prices, and the service is second to none. There's nowhere else I'd go for rugs at this stage. Keep up the great work!</div>
+          <div class="review-footer"><div class="review-avatar">SB</div><div class="review-meta"><strong>Seamus Brennan</strong><span>Tipperary Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">I wasn't sure what size to go for and the lad helped me figure out exactly what would work in my sitting room. The rug arrived and it fits perfectly. So impressed with the whole experience. Fantastic company.</div>
+          <div class="review-footer"><div class="review-avatar">CD</div><div class="review-meta"><strong>Caoimhe Dolan</strong><span>Roscommon Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">All the way up in Donegal and they still delivered without any hassle. The rug is absolutely beautiful — heavy, well made, and the pattern is stunning. Completely changed the look of my sitting room. Mad value for money.</div>
+          <div class="review-footer"><div class="review-avatar">PO</div><div class="review-meta"><strong>Pádraig Ó Murchú</strong><span>Donegal Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">I did a full living room renovation and this rug was the centrepiece. It pulls the whole room together beautifully. The photos on the website don't do it justice — it's even better in person. Couldn't be happier.</div>
+          <div class="review-footer"><div class="review-avatar">RO</div><div class="review-meta"><strong>Rachel O'Sullivan</strong><span>Waterford City</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Super easy to deal with over WhatsApp. Got a large rug delivered to Dún Laoghaire without a bother. It's plush, well made, and looks incredible in our dining room. My wife is absolutely thrilled with it.</div>
+          <div class="review-footer"><div class="review-avatar">BF</div><div class="review-meta"><strong>Brian Fitzpatrick</strong><span>Dún Laoghaire</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Bought two rugs for the new house. Both are stunning — great quality and far better value than anything I'd seen in the shops. Delivery to Mayo was quick too. Will definitely be coming back for more. Highly recommended!</div>
+          <div class="review-footer"><div class="review-avatar">SC</div><div class="review-meta"><strong>Sinéad Connolly</strong><span>Westport, Mayo</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Got a massive rug for my open-plan kitchen/living area. It fits perfectly and softens the whole room. The service was friendly and efficient — answered all my WhatsApp queries straight away. Couldn't ask for more.</div>
+          <div class="review-footer"><div class="review-avatar">JQ</div><div class="review-meta"><strong>James Quinn</strong><span>Dundalk, Louth</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Was looking for something specific and they had exactly what I wanted. Delivery to Kildare was next day. Rug is thick, luxurious and the colours are gorgeous. My whole family has been commenting on it. Brilliant find!</div>
+          <div class="review-footer"><div class="review-avatar">OH</div><div class="review-meta"><strong>Orla Higgins</strong><span>Newbridge, Kildare</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Came across 1st Class Rugs through a friend's recommendation and I'm so glad I did. Great selection, brilliant service and the rug looks amazing in our front room. Quick delivery to Longford too. Would recommend to everyone.</div>
+          <div class="review-footer"><div class="review-avatar">LS</div><div class="review-meta"><strong>Liam Sheridan</strong><span>Longford Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">I was redecorating my sitting room and needed a statement rug. Found exactly what I was looking for here. The quality is outstanding — you can tell it's built to last. Great communication throughout too.</div>
+          <div class="review-footer"><div class="review-avatar">AM</div><div class="review-meta"><strong>Aisling Moran</strong><span>Athlone, Westmeath</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Fair play to these guys — the rug is class. Honestly better quality than stuff I've seen in expensive home stores. Easy to enquire over WhatsApp and delivery to Offaly was no problem at all. Delighted with it.</div>
+          <div class="review-footer"><div class="review-avatar">CF</div><div class="review-meta"><strong>Conor Flanagan</strong><span>Tullamore, Offaly</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Bought a beautiful large rug as a housewarming gift for my daughter. She was absolutely thrilled with it. Amazing quality and the price was very reasonable. The whole process from enquiry to delivery was seamless.</div>
+          <div class="review-footer"><div class="review-avatar">MD</div><div class="review-meta"><strong>Margaret Dunne</strong><span>Portlaoise, Laois</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Spotted a rug on the website and WhatsApp'd straight away. It was still available and arrived at my door in north Dublin the next morning. Looks incredible in my living room. Great price, great service. Highly recommend!</div>
+          <div class="review-footer"><div class="review-avatar">PR</div><div class="review-meta"><strong>Patrick Ryan</strong><span>Swords, Dublin</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Just moved into a new place and needed rugs for a few rooms. Got two from here and both are absolutely gorgeous. Good value, fast delivery to Carlow, and the guy was lovely to deal with. Will be back for more!</div>
+          <div class="review-footer"><div class="review-avatar">EC</div><div class="review-meta"><strong>Emma Cullen</strong><span>Carlow Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Sent a WhatsApp to ask a few questions and got an instant response with extra pictures and dimensions. Couldn't have asked for better customer service. The rug itself is beautiful — heavy, well made, and perfect in my hallway.</div>
+          <div class="review-footer"><div class="review-avatar">DM</div><div class="review-meta"><strong>Donal McCarthy</strong><span>Tralee, Kerry</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Absolutely love my new rug! It's plush, soft underfoot and the pattern is stunning. I've had loads of compliments on it already. Very easy to buy — just WhatsApp and it was sorted. Delivery to Clare was quick and hassle-free.</div>
+          <div class="review-footer"><div class="review-avatar">SN</div><div class="review-meta"><strong>Sorcha Ní Fhaoláin</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Great rug, great price and great service. The seller was really helpful and made sure I got exactly the right one for my room. It arrived perfectly rolled and in great condition. Very happy customer in Tipperary!</div>
+          <div class="review-footer"><div class="review-avatar">MK</div><div class="review-meta"><strong>Michael Keating</strong><span>Nenagh, Tipperary</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">I've bought rugs from shops and online before but nothing comes close to the quality here. The rug is thick, the colours are rich, and it's clearly going to last for years. Arrived fast to Dundalk. Absolutely buzzing with it!</div>
+          <div class="review-footer"><div class="review-avatar">CN</div><div class="review-meta"><strong>Ciara Nolan</strong><span>Dundalk, Louth</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Bought a gorgeous large rug for my living room. The quality is unreal — it's so soft and the colours are exactly as shown. Quick delivery to Wexford and great communication throughout. Will definitely be recommending to friends.</div>
+          <div class="review-footer"><div class="review-avatar">SM</div><div class="review-meta"><strong>Shane Madden</strong><span>Wexford Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Found this page while looking for rugs and I'm so glad I did. The selection is great, the prices are fair and the service is excellent. My rug arrived quickly to Meath and looks stunning in the dining room. Would recommend!</div>
+          <div class="review-footer"><div class="review-avatar">YB</div><div class="review-meta"><strong>Yvonne Brady</strong><span>Navan, Meath</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Ordered a large rug for the sitting room and the whole experience was flawless. Quick reply on WhatsApp, fair price, and it arrived in Letterkenny in great condition. Looks amazing — completely transformed the room. 10/10!</div>
+          <div class="review-footer"><div class="review-avatar">KM</div><div class="review-meta"><strong>Kevin Murray</strong><span>Letterkenny, Donegal</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">I wasn't expecting such great quality for the price. The rug is beautiful — heavy, well finished, and the pattern is stunning. Delivery to Monaghan was fast and the seller was brilliant to deal with. Very happy customer!</div>
+          <div class="review-footer"><div class="review-avatar">DC</div><div class="review-meta"><strong>Deirdre Cassidy</strong><span>Monaghan Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">My sitting room has never looked so well! The rug is exactly as described — thick, rich and absolutely class. The seller was sound and very helpful. Came all the way from Galway to Roscommon in no time. Great stuff altogether.</div>
+          <div class="review-footer"><div class="review-avatar">TF</div><div class="review-meta"><strong>Tommy Farrell</strong><span>Boyle, Roscommon</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Brilliant experience from start to finish. Sent a WhatsApp, got helpful replies straight away, and the rug arrived next day. It's soft, well made and looks absolutely stunning in my living room. 100% recommend to anyone looking for a quality rug!</div>
+          <div class="review-footer"><div class="review-avatar">CO</div><div class="review-meta"><strong>Claire O'Reilly</strong><span>Naas, Kildare</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Picked up a beautiful rug for our new house. Excellent quality and the colour is exactly as shown in the photos. Very easy to deal with and great value for money. Quick delivery to Ennis. Couldn't be more pleased with it!</div>
+          <div class="review-footer"><div class="review-avatar">GL</div><div class="review-meta"><strong>Gerard Lyons</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Ordered up north and they delivered without any issue. The rug is absolutely gorgeous — exactly what my living room needed. Super easy to deal with on WhatsApp and the price was very fair. Would definitely order again!</div>
+          <div class="review-footer"><div class="review-avatar">BM</div><div class="review-meta"><strong>Bronagh McAuley</strong><span>Newry, Co. Down</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Bought a gorgeous patterned rug for the dining room and it's transformed the whole space. The pile is deep and plush — really premium quality. The seller was so easy to deal with and delivery to Thurles was super fast.</div>
+          <div class="review-footer"><div class="review-avatar">LH</div><div class="review-meta"><strong>Lorraine Hennessy</strong><span>Thurles, Tipperary</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Very impressed with the quality and the service. I messaged about a rug I'd seen on the website and within an hour it was sorted and paid for. Arrived in Castlebar two days later in perfect condition. Dead happy with it!</div>
+          <div class="review-footer"><div class="review-avatar">AC</div><div class="review-meta"><strong>Aidan Costello</strong><span>Castlebar, Mayo</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Got a stunning rug for my bedroom — it's so soft underfoot and the colour is a perfect match for my décor. The seller was so accommodating and delivery to Killarney was hassle-free. Would absolutely recommend to anyone!</div>
+          <div class="review-footer"><div class="review-avatar">UO</div><div class="review-meta"><strong>Úna O'Dwyer</strong><span>Killarney, Kerry</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Ordered for the first time and was seriously impressed. Quick replies, great advice, and the rug arrived in perfect condition all the way to north Cork. Quality is top notch — much better than high street stores. Will order again!</div>
+          <div class="review-footer"><div class="review-avatar">SB</div><div class="review-meta"><strong>Stephen Barry</strong><span>Fermoy, Cork</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Very professional service. The rug I got is absolutely beautiful — great pattern, fantastic quality and really good value. Delivered quickly to Drogheda and arrived well wrapped. Everyone who's visited has commented on how lovely it is!</div>
+          <div class="review-footer"><div class="review-avatar">HS</div><div class="review-meta"><strong>Helen Smyth</strong><span>Drogheda, Louth</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Fuair mé ruga iontach ar fheabhas — cáilíocht den scoth agus praghas réasúnta. Sheol sé go Dún na nGall gan stró ar bith. Tá mé thar a bheith sásta leis. Molaim go hard é do cách!</div>
+          <div class="review-footer"><div class="review-avatar">RO</div><div class="review-meta"><strong>Ruairí Ó Gallchóir</strong><span>Falcarragh, Donegal</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Was a bit unsure about buying a rug without seeing it first but I needn't have worried — it was exactly as described and even better than expected. Delivery to Portlaoise was really quick. So glad I went for it. Absolutely love it!</div>
+          <div class="review-footer"><div class="review-avatar">JT</div><div class="review-meta"><strong>Jennifer Toomey</strong><span>Portlaoise, Laois</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Brilliant service from beginning to end. The rug I ordered is stunning — exactly the right size and colour for our living room. Delivered to Gorey in no time and packaged perfectly. Couldn't recommend these guys highly enough!</div>
+          <div class="review-footer"><div class="review-avatar">CW</div><div class="review-meta"><strong>Colm Whelan</strong><span>Gorey, Wexford</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Ceannnaigh mé ruga álainn do mo sheomra suí. Cáilíocht den chéad scoth agus an tseirbhís go hiontach. Seachadadh go Gaillimh go tapa. Tá áthas an domhain orm leis. Go raibh míle maith agaibh!</div>
+          <div class="review-footer"><div class="review-avatar">MN</div><div class="review-meta"><strong>Máire Ní Cheallaigh</strong><span>An Cheathrú Rua, Galway</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Needed a rug quickly for a spare room before guests arrived and they came through — ordered in the morning and it was at my door in Cavan by next day. Absolute quality and brilliant service. Saved the day! Would recommend to anyone.</div>
+          <div class="review-footer"><div class="review-avatar">PC</div><div class="review-meta"><strong>Paul Corrigan</strong><span>Cavan Town</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Really lovely rugs and brilliant customer service. The seller went above and beyond to help me choose the right one. It arrived to Tullamore quickly and looks absolutely gorgeous in my hallway. Can't recommend them enough — class!</div>
+          <div class="review-footer"><div class="review-avatar">TM</div><div class="review-meta"><strong>Tracey Mullan</strong><span>Tullamore, Offaly</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Outstanding quality and outstanding service. I've bought several rugs from different places over the years and these are by far the best. Great patterns, great pile, and great value. Delivered to Clare without any issues. Highly recommended!</div>
+          <div class="review-footer"><div class="review-avatar">BO</div><div class="review-meta"><strong>Brendan O'Halloran</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">Bought a beautiful runner for my hallway and a large rug for the sitting room. Both arrived quickly and are absolutely gorgeous. The seller was so helpful and friendly. By far the best place to buy rugs in Ireland. Will be back!</div>
+          <div class="review-footer"><div class="review-avatar">MO</div><div class="review-meta"><strong>Michelle O'Toole</strong><span>Bray, Wicklow</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <div class="review-text">First time buying from here and definitely won't be the last. The rug is absolutely class — thick, beautiful pattern and great quality. WhatsApp communication was instant and delivery to Galway was the next day. Couldn't be happier!</div>
+          <div class="review-footer"><div class="review-avatar">DK</div><div class="review-meta"><strong>Damien Kennedy</strong><span>Ballinasloe, Galway</span></div><div class="review-verified">✓ Verified</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- CONTACT -->
@@ -1853,14 +1792,18 @@
     }
   });
 
-  // Load more reviews
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-      document.querySelectorAll('.reviews-hidden').forEach(el => el.classList.remove('reviews-hidden'));
-      document.getElementById('loadMoreWrap').style.display = 'none';
-    });
-  }
+  // Reviews dropdown toggle
+  const reviewsToggle = document.getElementById('reviewsToggle');
+  const reviewsPanel  = document.getElementById('reviewsPanel');
+
+  reviewsToggle.addEventListener('click', () => {
+    const isOpen = reviewsPanel.classList.contains('open');
+    reviewsPanel.classList.toggle('open');
+    reviewsToggle.classList.toggle('open');
+    if (!isOpen) {
+      setTimeout(() => reviewsToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+    }
+  });
 
   // Hero "View All Rugs" button opens the dropdown
   const heroStockBtn = document.getElementById('heroStockBtn');
