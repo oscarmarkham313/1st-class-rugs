@@ -47,15 +47,23 @@
     }
 
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
-    .nav-logo span { color: var(--text); }
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(201,168,76,0.18));
+      transition: opacity 0.2s;
+    }
+
+    .nav-logo img:hover { opacity: 0.88; }
+
+    .nav-logo span { display: none; }
 
     .nav-links {
       display: flex;
@@ -1136,7 +1144,9 @@
 
 <!-- NAVBAR -->
 <nav>
-  <a href="#" class="nav-logo">1<span>st</span> Class <span>Rugs</span></a>
+  <a href="#" class="nav-logo">
+    <img src="images/logo.png" alt="1st Class Rugs" />
+  </a>
   <ul class="nav-links">
     <li><a href="#stock">In Stock</a></li>
     <li><a href="#reviews">Reviews</a></li>
@@ -1649,7 +1659,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">1st Class Rugs</div>
+  <div class="footer-logo"><img src="images/logo.png" alt="1st Class Rugs" style="height:80px;width:auto;opacity:0.9;" /></div>
   <p>Premium rugs in Galway, Ireland &nbsp;·&nbsp; +353 86 845 5654 &nbsp;·&nbsp; 091 673 637<br />© 2026 1st Class Rugs. All rights reserved.</p>
 </footer>
 
