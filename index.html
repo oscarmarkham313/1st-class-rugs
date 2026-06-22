@@ -4,21 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1st Class Rugs — Premium Rugs | Free Nationwide Delivery Ireland</title>
-  <meta name="description" content="1st Class Rugs — Premium quality rugs delivered free across all of Ireland. Browse our stunning collection and order today." />
+  <meta name="description" content="1st Class Rugs — Premium quality rugs delivered free across all of Ireland. Browse 33+ stunning designs and order today." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --accent: #c9a84c;
-      --accent-dark: #a8893a;
-      --bg: #ffffff;
-      --bg2: #f6f6f4;
-      --text: #1a1a1a;
-      --muted: #777;
-      --border: #e0e0e0;
+      --gold: #c9a84c;
+      --gold-light: #ddb96a;
+      --gold-dim: rgba(201,168,76,0.1);
+      --gold-border: rgba(201,168,76,0.2);
+      --bg: #080808;
+      --bg2: #0d0d0d;
+      --card: #0f0f0f;
+      --text: #f0ece4;
+      --muted: #7a7670;
+      --border: rgba(255,255,255,0.06);
     }
 
     html { scroll-behavior: smooth; }
@@ -30,52 +33,154 @@
       overflow-x: hidden;
     }
 
+    ::selection { background: rgba(201,168,76,0.22); color: var(--text); }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.25); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    /* ── SCROLL REVEAL ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
     /* ── NAVBAR ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 200;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 40px;
-      background: #fff;
-      border-bottom: 1px solid var(--border);
+      padding: 22px 52px;
+      transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
     }
 
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 48px; width: auto; display: block; }
+    nav.scrolled {
+      background: rgba(8,8,8,0.97);
+      backdrop-filter: blur(24px);
+      padding: 14px 52px;
+      border-bottom-color: var(--gold-border);
+    }
+
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      filter: drop-shadow(0 0 10px rgba(201,168,76,0.18));
+      transition: opacity 0.2s;
+    }
+    .nav-logo img:hover { opacity: 0.82; }
     .nav-logo span { display: none; }
 
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
     }
-    .nav-links a:hover { color: var(--accent); }
+
+    .nav-links a {
+      color: rgba(240,236,228,0.7);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { transform: scaleX(1); }
 
     .nav-cta {
-      background: var(--accent) !important;
-      color: #fff !important;
-      padding: 9px 20px;
+      background: var(--gold) !important;
+      color: #080808 !important;
+      padding: 10px 22px !important;
+      border-radius: 4px !important;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 201;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8,8,8,0.99);
+      z-index: 199;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .m-cta {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 1rem !important;
+      background: var(--gold);
+      color: #080808 !important;
+      padding: 14px 40px;
       border-radius: 4px;
       font-weight: 700 !important;
     }
-    .nav-cta:hover { background: var(--accent-dark) !important; }
 
     /* ── HERO ── */
     .hero {
-      min-height: 80vh;
+      position: relative;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
       overflow: hidden;
-      padding: 120px 20px 80px;
+      padding: 160px 24px 120px;
     }
 
     .hero-bg {
@@ -84,555 +189,678 @@
       background-image: url('images/WhatsApp_Image_2026-05-19_at_17.36.27.jpeg');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.32);
+      filter: brightness(0.2);
+      transform: scale(1.05);
+      animation: heroZoom 28s ease-in-out infinite alternate;
     }
 
-    .hero-content { position: relative; max-width: 760px; }
+    @keyframes heroZoom {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1.12); }
+    }
 
-    .hero-badge {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.5);
-      color: #fff;
-      font-size: 0.74rem;
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, rgba(8,8,8,0.15) 0%, rgba(8,8,8,0.05) 45%, rgba(8,8,8,0.65) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 840px;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 30px;
+      color: var(--gold);
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      padding: 7px 18px;
-      border-radius: 4px;
-      margin-bottom: 22px;
     }
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      width: 44px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+      opacity: 0.6;
+    }
+    .hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--gold)); }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1.04;
+      margin-bottom: 28px;
       color: #fff;
+      letter-spacing: -0.01em;
     }
 
-    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero h1 em { font-style: italic; color: var(--gold); }
 
-    .hero p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 540px;
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: rgba(240,236,228,0.68);
+      line-height: 1.8;
+      margin-bottom: 50px;
+      font-weight: 300;
+      max-width: 560px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--accent);
-      color: #fff;
+      gap: 10px;
+      background: var(--gold);
+      color: #080808;
       font-weight: 700;
-      font-size: 0.95rem;
-      padding: 14px 32px;
+      font-size: 0.9rem;
+      padding: 16px 38px;
       border-radius: 4px;
       text-decoration: none;
-      transition: background 0.2s;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201,168,76,0.28);
+    }
 
     .btn-outline {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      border: 2px solid rgba(255,255,255,0.65);
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.28);
       color: #fff;
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 12px 28px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 15px 34px;
       border-radius: 4px;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+      letter-spacing: 0.04em;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
     }
-    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      transform: translateY(-2px);
+    }
 
-    .scroll-hint { display: none; }
+    .scroll-hint {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(240,236,228,0.35);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      animation: scrollPulse 2.8s ease-in-out infinite;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.45), transparent);
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.35; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 0.7; transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+      background: var(--bg2);
+    }
+
+    .trust-bar-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-item {
+      text-align: center;
+      padding: 0 20px;
+      border-right: 1px solid var(--gold-border);
+    }
+    .trust-item:last-child { border-right: none; }
+
+    .trust-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .trust-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
 
     /* ── FEATURES ── */
     .features {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .features-inner {
-      max-width: 1100px;
+      padding: 80px 48px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 48px 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 28px;
-      text-align: center;
     }
 
-    .feature-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-    .feature-icon { font-size: 1.8rem; }
-    .feature-item h3 { font-size: 1rem; font-weight: 700; color: var(--text); }
-    .feature-item p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
 
-    /* ── SECTION HEADER ── */
-    .section-header { text-align: center; margin-bottom: 44px; }
-    .section-tag {
-      display: inline-block;
-      color: var(--accent);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    .feature-item {
+      padding: 40px 32px;
+      background: var(--card);
+      border-right: 1px solid var(--gold-border);
+      transition: background 0.3s;
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-item:hover { background: rgba(201,168,76,0.04); }
+
+    .feature-icon { font-size: 1.6rem; margin-bottom: 18px; display: block; }
+
+    .feature-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--gold);
       margin-bottom: 10px;
     }
+
+    .feature-item p { font-size: 0.84rem; color: var(--muted); line-height: 1.72; }
+
+    /* ── SECTION HEADER ── */
+    .section-header { text-align: center; margin-bottom: 56px; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-tag::before, .section-tag::after {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
     .section-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 700;
-      margin-bottom: 12px;
+      line-height: 1.15;
+      margin-bottom: 16px;
     }
-    .section-header p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 500px; margin: 0 auto; }
-    .gold-divider { width: 48px; height: 3px; background: var(--accent); margin: 14px auto 0; border-radius: 2px; }
+
+    .section-header p { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 500px; margin: 0 auto; }
 
     /* ── STOCK GALLERY ── */
-    .stock { padding: 60px 40px 80px; max-width: 1300px; margin: 0 auto; }
+    .stock { padding: 60px 48px 100px; max-width: 1400px; margin: 0 auto; }
 
     .stock-toggle {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px 28px;
+      background: var(--card);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 24px 32px;
       cursor: pointer;
       user-select: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.25s, background 0.25s;
     }
-    .stock-toggle:hover { border-color: var(--accent); }
-    .stock-toggle.open { border-radius: 8px 8px 0 0; border-color: var(--accent); border-bottom-color: transparent; }
+    .stock-toggle:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.04); }
+    .stock-toggle.open { border-radius: 10px 10px 0 0; border-color: rgba(201,168,76,0.4); border-bottom-color: transparent; }
 
-    .stock-toggle-left { display: flex; align-items: center; gap: 14px; }
-    .stock-toggle-icon { font-size: 1.4rem; }
-    .stock-toggle-label h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-    .stock-toggle-label span { font-size: 0.8rem; color: var(--muted); margin-top: 2px; display: block; }
+    .stock-toggle-left { display: flex; align-items: center; gap: 18px; }
 
-    .stock-toggle-right { display: flex; align-items: center; gap: 12px; }
+    .stock-toggle-icon {
+      width: 48px; height: 48px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+
+    .stock-toggle-label h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; }
+    .stock-toggle-label span { font-size: 0.8rem; color: var(--muted); margin-top: 3px; display: block; }
+
+    .stock-toggle-right { display: flex; align-items: center; gap: 14px; }
 
     .stock-count-pill {
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 4px;
-      letter-spacing: 0.03em;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 0.76rem; font-weight: 700;
+      padding: 6px 14px; border-radius: 50px;
     }
 
     .stock-toggle-arrow {
-      width: 30px; height: 30px;
-      border: 1px solid var(--border);
+      width: 34px; height: 34px;
+      border: 1px solid var(--gold-border);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--muted);
-      transition: transform 0.3s ease;
+      color: var(--gold);
+      transition: transform 0.35s ease;
     }
     .stock-toggle.open .stock-toggle-arrow { transform: rotate(180deg); }
 
     .gallery-panel {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.5s ease;
-      border: 1px solid var(--accent);
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.65s cubic-bezier(0.4,0,0.2,1);
+      border: 1px solid rgba(201,168,76,0.35);
       border-top: none;
-      border-radius: 0 0 8px 8px;
+      border-radius: 0 0 10px 10px;
     }
     .gallery-panel.open { max-height: 9999px; }
-    .gallery-panel-inner { padding: 24px; }
+    .gallery-panel-inner { padding: 28px; }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
     }
 
     .rug-card {
-      background: #fff;
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
-      transition: box-shadow 0.2s, border-color 0.2s;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s, border-color 0.3s;
     }
-    .rug-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); border-color: #ccc; }
+    .rug-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 24px 52px rgba(0,0,0,0.55), 0 0 0 1px rgba(201,168,76,0.28);
+      border-color: rgba(201,168,76,0.28);
+    }
 
     .rug-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3; }
-    .rug-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .rug-overlay { display: none; }
-    .rug-overlay-text { display: none; }
+    .rug-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .rug-card:hover .rug-img-wrap img { transform: scale(1.07); }
+
+    .rug-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .rug-card:hover .rug-overlay { background: rgba(0,0,0,0.38); }
+
+    .rug-overlay-text {
+      color: #fff; font-size: 0.76rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 10px 22px; border-radius: 4px;
+    }
+    .rug-card:hover .rug-overlay-text { opacity: 1; transform: translateY(0); }
 
     .in-stock-badge {
-      position: absolute;
-      top: 10px; left: 10px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.63rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 4px;
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(8,8,8,0.88);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 50px;
     }
 
     .rug-info {
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 18px 20px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .rug-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
-    .rug-sub { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+
+    .rug-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; }
+    .rug-sub { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
 
     .enquire-btn {
-      background: var(--accent);
-      border: none;
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 8px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 8px 16px; border-radius: 4px;
+      cursor: pointer; text-decoration: none;
       white-space: nowrap;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
-    .enquire-btn:hover { background: var(--accent-dark); }
+    .enquire-btn:hover { background: var(--gold); color: #080808; }
 
     /* ── REVIEWS ── */
-    .reviews { padding: 80px 40px; max-width: 1300px; margin: 0 auto; }
+    .reviews { padding: 100px 48px; max-width: 1400px; margin: 0 auto; }
 
     .reviews-summary {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 44px;
-      flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; margin-bottom: 56px; flex-wrap: wrap;
     }
 
     .reviews-score { text-align: center; }
-    .reviews-score .big-score {
+    .big-score {
       font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      font-weight: 900;
-      color: var(--accent);
-      line-height: 1;
+      font-size: 5rem; font-weight: 900;
+      color: var(--gold); line-height: 1;
     }
-    .reviews-score .score-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
+    .score-label { font-size: 0.76rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 7px; }
 
-    .reviews-divider { width: 1px; height: 70px; background: var(--border); }
+    .reviews-divider { width: 1px; height: 80px; background: var(--gold-border); }
 
-    .reviews-stars-summary { display: flex; flex-direction: column; gap: 6px; }
+    .reviews-stars-summary { display: flex; flex-direction: column; gap: 7px; }
     .stars-row { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--muted); }
-    .stars-row .bar { width: 130px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
-    .stars-row .bar-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+    .stars-row .bar { width: 140px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .stars-row .bar-fill { height: 100%; background: var(--gold); border-radius: 2px; }
 
     .review-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
     }
 
     .review-card {
-      background: #fff;
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: border-color 0.2s;
+      border-radius: 10px;
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 14px;
+      position: relative;
+      transition: border-color 0.25s, transform 0.25s;
     }
-    .review-card:hover { border-color: #bbb; }
 
-    .review-stars { display: flex; gap: 2px; }
-    .review-stars span { color: var(--accent); font-size: 0.95rem; }
+    .review-card::before {
+      content: '\201C';
+      position: absolute; top: 18px; right: 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; line-height: 1;
+      color: rgba(201,168,76,0.1);
+      pointer-events: none;
+    }
 
-    .review-text { font-size: 0.9rem; color: var(--text); line-height: 1.65; flex: 1; font-style: italic; }
+    .review-card:hover { border-color: rgba(201,168,76,0.28); transform: translateY(-3px); }
+
+    .review-stars { display: flex; gap: 3px; }
+    .review-stars span { color: var(--gold); font-size: 0.95rem; }
+
+    .review-text { font-size: 0.9rem; color: rgba(240,236,228,0.82); line-height: 1.72; flex: 1; font-style: italic; }
     .review-text::before { content: '\201C'; }
     .review-text::after  { content: '\201D'; }
 
     .review-footer {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
+      display: flex; align-items: center; gap: 12px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 14px;
     }
 
     .review-avatar {
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: #f5ead5;
-      border: 1px solid var(--border);
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--gold-border);
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.82rem; color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 0.9rem; color: var(--gold);
       flex-shrink: 0;
     }
 
-    .review-meta strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); }
-    .review-meta span { font-size: 0.74rem; color: var(--muted); }
-    .review-verified { margin-left: auto; font-size: 0.68rem; color: #2e7d50; display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+    .review-meta strong { display: block; font-size: 0.86rem; font-weight: 600; }
+    .review-meta span { font-size: 0.75rem; color: var(--muted); }
+    .review-verified { margin-left: auto; font-size: 0.68rem; color: #4caf7d; display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
 
     /* Reviews toggle */
     .reviews-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px 28px;
-      cursor: pointer;
-      user-select: none;
-      transition: border-color 0.2s;
-      margin-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--card);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 24px 32px;
+      cursor: pointer; user-select: none;
+      transition: border-color 0.25s, background 0.25s;
+      margin-top: 32px;
     }
-    .reviews-toggle:hover { border-color: var(--accent); }
-    .reviews-toggle.open { border-radius: 8px 8px 0 0; border-color: var(--accent); border-bottom-color: transparent; }
+    .reviews-toggle:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.04); }
+    .reviews-toggle.open { border-radius: 10px 10px 0 0; border-bottom-color: transparent; }
 
-    .reviews-toggle-left { display: flex; align-items: center; gap: 14px; }
-    .reviews-toggle-icon { font-size: 1.3rem; }
-    .reviews-toggle-label h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); }
-    .reviews-toggle-label span { font-size: 0.8rem; color: var(--muted); margin-top: 2px; display: block; }
-
-    .reviews-toggle-right { display: flex; align-items: center; gap: 12px; }
+    .reviews-toggle-left { display: flex; align-items: center; gap: 18px; }
+    .reviews-toggle-icon {
+      width: 48px; height: 48px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .reviews-toggle-label h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; }
+    .reviews-toggle-label span { font-size: 0.8rem; color: var(--muted); margin-top: 3px; display: block; }
+    .reviews-toggle-right { display: flex; align-items: center; gap: 14px; }
 
     .reviews-count-pill {
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 4px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      color: var(--gold); font-size: 0.76rem; font-weight: 700;
+      padding: 6px 14px; border-radius: 50px;
     }
 
     .reviews-toggle-arrow {
-      width: 28px; height: 28px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
+      width: 34px; height: 34px;
+      border: 1px solid var(--gold-border); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--muted);
-      transition: transform 0.3s ease;
+      color: var(--gold); transition: transform 0.35s ease;
     }
     .reviews-toggle.open .reviews-toggle-arrow { transform: rotate(180deg); }
 
     .reviews-panel {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.5s ease;
-      border: 1px solid var(--accent);
-      border-top: none;
-      border-radius: 0 0 8px 8px;
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.65s cubic-bezier(0.4,0,0.2,1);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-top: none; border-radius: 0 0 10px 10px;
     }
     .reviews-panel.open { max-height: 9999px; }
-    .reviews-panel-inner { padding: 24px; }
+    .reviews-panel-inner { padding: 28px; }
 
     /* ── CONTACT ── */
     .contact {
       background: var(--bg2);
-      border-top: 1px solid var(--border);
-      padding: 80px 40px;
+      border-top: 1px solid var(--gold-border);
+      padding: 100px 48px;
     }
 
     .contact-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
+      max-width: 920px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
     }
 
     .contact-left h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-      font-weight: 700;
-      margin-bottom: 12px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; margin-bottom: 16px;
     }
-    .contact-left p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; }
 
-    .contact-details { display: flex; flex-direction: column; gap: 14px; }
+    .contact-left p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; margin-bottom: 36px; }
 
-    .contact-detail { display: flex; align-items: flex-start; gap: 12px; }
-    .contact-detail-icon { font-size: 1.1rem; margin-top: 2px; }
-    .contact-detail strong { display: block; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .contact-detail span { font-size: 0.87rem; color: var(--muted); }
+    .contact-details { display: flex; flex-direction: column; gap: 18px; }
 
-    .contact-right { display: flex; flex-direction: column; gap: 12px; }
+    .contact-detail { display: flex; align-items: flex-start; gap: 14px; }
+
+    .contact-detail-icon {
+      width: 40px; height: 40px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+
+    .contact-detail strong { display: block; font-weight: 600; margin-bottom: 3px; }
+    .contact-detail span { font-size: 0.85rem; color: var(--muted); }
+
+    .contact-right { display: flex; flex-direction: column; gap: 14px; }
 
     .contact-btn {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      transition: border-color 0.2s;
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 26px; border-radius: 10px;
+      text-decoration: none; font-weight: 600; font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid transparent;
     }
+    .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.4); }
 
-    .contact-btn-whatsapp { background: #128c5e; color: #fff; border-color: #128c5e; }
-    .contact-btn-whatsapp:hover { background: #0e7a52; }
-
-    .contact-btn-call:hover { border-color: var(--accent); }
+    .contact-btn-whatsapp { background: #128c5e; color: #fff; }
+    .contact-btn-call {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-color: var(--gold-border);
+    }
+    .contact-btn-call:hover { background: var(--gold); color: #080808; border-color: var(--gold); }
 
     .contact-btn-icon {
-      width: 40px; height: 40px;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.15);
+      width: 46px; height: 46px; border-radius: 8px;
+      background: rgba(255,255,255,0.1);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
+      font-size: 1.3rem; flex-shrink: 0;
     }
-    .contact-btn-call .contact-btn-icon { background: var(--bg2); }
+    .contact-btn-call .contact-btn-icon { background: rgba(201,168,76,0.15); }
 
     .contact-btn-text span {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 400;
-      opacity: 0.75;
-      margin-bottom: 2px;
+      display: block; font-size: 0.73rem; font-weight: 400;
+      opacity: 0.7; margin-bottom: 2px;
     }
-    .contact-btn-call .contact-btn-text span { opacity: 1; color: var(--muted); }
 
     /* ── FOOTER ── */
     footer {
-      background: #1a1a1a;
-      padding: 36px 40px;
+      background: #050505;
+      border-top: 1px solid var(--gold-border);
+      padding: 48px 40px;
       text-align: center;
     }
 
-    .footer-logo { margin-bottom: 10px; }
-    footer p { font-size: 0.8rem; color: #999; line-height: 1.6; }
+    .footer-logo { margin-bottom: 14px; }
+    footer p { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
 
     /* ── FLOATING BUTTONS ── */
     .floating-btns {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-end;
+      position: fixed; bottom: 28px; right: 24px;
+      z-index: 199; display: flex; flex-direction: column;
+      gap: 12px; align-items: flex-end;
     }
 
     .fab {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      padding: 12px 18px 12px 14px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.88rem;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; padding: 13px 20px 13px 16px;
+      border-radius: 50px; font-weight: 700; font-size: 0.88rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
       white-space: nowrap;
     }
-    .fab:hover { opacity: 0.92; }
-
+    .fab:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,0.55); }
     .fab-wa { background: #25d366; color: #fff; }
-    .fab-call { background: var(--accent); color: #fff; }
+    .fab-call { background: var(--gold); color: #080808; }
     .fab-icon { font-size: 1.2rem; }
 
     /* ── LIGHTBOX ── */
     .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(0,0,0,0.9);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.94); align-items: center; justify-content: center; padding: 20px;
     }
     .lightbox.open { display: flex; }
-
-    .lightbox-img {
-      max-width: 90vw;
-      max-height: 88vh;
-      object-fit: contain;
-      border-radius: 6px;
-    }
-
+    .lightbox-img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 6px; }
     .lightbox-close {
-      position: absolute;
-      top: 16px; right: 20px;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      opacity: 0.8;
+      position: absolute; top: 20px; right: 26px;
+      color: #fff; font-size: 2rem; cursor: pointer;
+      background: none; border: none; opacity: 0.6; transition: opacity 0.2s;
     }
     .lightbox-close:hover { opacity: 1; }
-
-    .lightbox-prev,
-    .lightbox-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: #fff;
-      font-size: 1.6rem;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+      color: #fff; font-size: 1.6rem; width: 50px; height: 50px;
+      border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
     }
-    .lightbox-prev { left: 12px; }
-    .lightbox-next { right: 12px; }
-
-    .lightbox-caption {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #aaa;
-      font-size: 0.8rem;
-    }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.18); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-caption { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: 0.8rem; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-item:nth-child(2) { border-right: none; }
+      .feature-item:nth-child(1), .feature-item:nth-child(2) { border-bottom: 1px solid var(--gold-border); }
+      .trust-bar-inner { grid-template-columns: repeat(2, 1fr); gap: 0; }
+      .trust-item:nth-child(2) { border-right: none; }
+      .trust-item:nth-child(1), .trust-item:nth-child(2) { border-bottom: 1px solid var(--gold-border); padding-bottom: 28px; margin-bottom: 28px; }
+      .trust-item:nth-child(3), .trust-item:nth-child(4) { padding-top: 0; }
+    }
+
     @media (max-width: 768px) {
-      nav { padding: 12px 16px; }
+      nav { padding: 16px 20px; }
+      nav.scrolled { padding: 12px 20px; }
       .nav-links { display: none; }
-      .stock { padding: 50px 16px 60px; }
+      .nav-hamburger { display: flex; }
+      .features { padding: 60px 20px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .stock { padding: 50px 20px 70px; }
       .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-      .reviews { padding: 60px 16px; }
-      .contact { padding: 60px 20px; }
-      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
-      .features-inner { padding: 36px 16px; }
+      .reviews { padding: 70px 20px; }
+      .contact { padding: 70px 20px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 50px; }
+      footer { padding: 36px 20px; }
       .fab span.fab-label { display: none; }
-      .fab { padding: 12px; }
-      footer { padding: 28px 16px; }
+      .fab { padding: 13px; }
     }
   </style>
 </head>
 <body>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#stock" onclick="closeMobile()">In Stock</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://wa.me/353868455654" class="m-cta" target="_blank">WhatsApp Us</a>
+</div>
+
 <!-- NAVBAR -->
-<nav>
+<nav id="navbar">
   <a href="#" class="nav-logo">
     <img src="images/logo.png" alt="1st Class Rugs" />
   </a>
@@ -642,69 +870,95 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://wa.me/353868455654" class="nav-cta">WhatsApp Us</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">Free Nationwide Delivery &nbsp;·&nbsp; All of Ireland</div>
+    <div class="hero-eyebrow">Free Nationwide Delivery &nbsp; Ireland</div>
     <h1>Exceptional Rugs,<br /><em>1st Class</em> Quality</h1>
-    <p>Handpicked rugs for every style and space. Browse our stunning collection and transform your home today — with free nationwide delivery across all of Ireland.</p>
+    <p class="hero-sub">Handpicked premium rugs for every home and every style — delivered free to your door anywhere in Ireland.</p>
     <div class="hero-btns">
       <a href="#stock" class="btn-primary" id="heroStockBtn">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         View All Rugs
       </a>
       <a href="https://wa.me/353868455654" class="btn-outline" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L0 24l6.335-1.512A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.803 9.803 0 01-5.001-1.37l-.36-.214-3.757.897.944-3.658-.234-.376A9.796 9.796 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L0 24l6.335-1.512A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.803 9.803 0 01-5.001-1.37l-.36-.214-3.757.897.944-3.658-.234-.376A9.796 9.796 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         WhatsApp Us
       </a>
     </div>
   </div>
+  <div class="scroll-hint">Scroll</div>
 </section>
 
+<!-- TRUST BAR -->
+<div class="trust-bar fade-up">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="trust-num">33+</div>
+      <div class="trust-label">Rugs In Stock</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">4.9★</div>
+      <div class="trust-label">Average Rating</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">45</div>
+      <div class="trust-label">Happy Customers</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">Free</div>
+      <div class="trust-label">Nationwide Delivery</div>
+    </div>
+  </div>
+</div>
+
 <!-- FEATURES -->
-<section class="features">
-  <div class="features-inner">
+<section class="features fade-up">
+  <div class="features-grid">
     <div class="feature-item">
-      <div class="feature-icon">🏆</div>
+      <span class="feature-icon">🏆</span>
       <h3>Premium Quality</h3>
-      <p>Every rug is carefully selected for quality, durability, and beautiful design.</p>
+      <p>Every rug is hand-selected for quality, durability, and stunning design.</p>
     </div>
     <div class="feature-item">
-      <div class="feature-icon">🚚</div>
-      <h3>Free Nationwide Delivery</h3>
+      <span class="feature-icon">🚚</span>
+      <h3>Free Delivery</h3>
       <p>We deliver to every county across Ireland — fast and completely free.</p>
     </div>
     <div class="feature-item">
-      <div class="feature-icon">💬</div>
-      <h3>Fast Response</h3>
-      <p>Message us on WhatsApp for instant replies and expert advice.</p>
+      <span class="feature-icon">💬</span>
+      <h3>Instant Response</h3>
+      <p>WhatsApp us for replies within minutes and expert advice on any rug.</p>
     </div>
     <div class="feature-item">
-      <div class="feature-icon">🎨</div>
+      <span class="feature-icon">🎨</span>
       <h3>Wide Selection</h3>
-      <p>Styles, sizes, and patterns to suit every home and budget.</p>
+      <p>Traditional to modern — styles, sizes, and patterns for every home.</p>
     </div>
   </div>
 </section>
 
 <!-- STOCK GALLERY -->
 <section class="stock" id="stock">
-  <div class="section-header">
+  <div class="section-header fade-up">
     <div class="section-tag">Currently Available</div>
     <h2>In Stock Now</h2>
-    <p>Click below to browse our full collection — all rugs available with free nationwide delivery.</p>
-    <div class="gold-divider"></div>
+    <p>Browse our full collection — all rugs available with free nationwide delivery.</p>
   </div>
 
-  <div class="stock-toggle" id="stockToggle">
+  <div class="stock-toggle fade-up" id="stockToggle">
     <div class="stock-toggle-left">
       <div class="stock-toggle-icon">🪞</div>
       <div class="stock-toggle-label">
         <h3>Browse All Rugs</h3>
-        <span>Click to view our full stock — 33 rugs available with free delivery</span>
+        <span>Click to view full stock — 33 rugs with free delivery</span>
       </div>
     </div>
     <div class="stock-toggle-right">
@@ -717,26 +971,23 @@
 
   <div class="gallery-panel" id="galleryPanel">
     <div class="gallery-panel-inner">
-      <div class="gallery-grid" id="gallery">
-        <!-- Cards injected by JS -->
-      </div>
+      <div class="gallery-grid" id="gallery"></div>
     </div>
   </div>
 </section>
 
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
-  <div class="section-header">
+  <div class="section-header fade-up">
     <div class="section-tag">Customer Reviews</div>
     <h2>What Our Customers Say</h2>
     <p>Trusted by hundreds of happy homes across every county in Ireland.</p>
-    <div class="gold-divider"></div>
   </div>
 
-  <div class="reviews-summary">
+  <div class="reviews-summary fade-up">
     <div class="reviews-score">
       <div class="big-score">4.9</div>
-      <div style="color:var(--accent);font-size:1.3rem;margin:6px 0;">★★★★★</div>
+      <div style="color:var(--gold);font-size:1.3rem;margin:7px 0;">★★★★★</div>
       <div class="score-label">Based on 45 reviews</div>
     </div>
     <div class="reviews-divider"></div>
@@ -749,53 +1000,30 @@
     </div>
   </div>
 
-  <!-- 4 featured reviews always visible -->
-  <div class="review-grid" id="reviewGrid">
-
+  <div class="review-grid fade-up" id="reviewGrid">
     <div class="review-card">
       <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Ordered a large living room rug and it arrived quickly. The quality is absolutely incredible — thick, luxurious pile and the colours are even richer in person than in the photos. Would highly recommend to anyone.</div>
-      <div class="review-footer">
-        <div class="review-avatar">SM</div>
-        <div class="review-meta"><strong>Siobhán Murphy</strong><span>Cork City</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
+      <div class="review-text">Ordered a large living room rug and it arrived quickly. The quality is absolutely incredible — thick, luxurious pile and the colours are even richer in person. Would highly recommend to anyone.</div>
+      <div class="review-footer"><div class="review-avatar">SM</div><div class="review-meta"><strong>Siobhán Murphy</strong><span>Cork City</span></div><div class="review-verified">✓ Verified</div></div>
     </div>
-
     <div class="review-card">
       <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Messaged on WhatsApp and got a reply within minutes. The lad was so helpful, sent me extra photos and measurements. Rug arrived the next day — absolutely love it. Best rug purchase I've ever made.</div>
-      <div class="review-footer">
-        <div class="review-avatar">EO</div>
-        <div class="review-meta"><strong>Eoin O'Brien</strong><span>Dublin 4</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
+      <div class="review-text">Messaged on WhatsApp and got a reply within minutes. Sent me extra photos and measurements. Rug arrived the next day — absolutely love it. Best rug purchase I've ever made.</div>
+      <div class="review-footer"><div class="review-avatar">EO</div><div class="review-meta"><strong>Eoin O'Brien</strong><span>Dublin 4</span></div><div class="review-verified">✓ Verified</div></div>
     </div>
-
     <div class="review-card">
       <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Massive selection, everything in perfect condition. Bought two rugs and both look class in my sitting room. Dead easy to deal with over WhatsApp and delivery was super fast.</div>
-      <div class="review-footer">
-        <div class="review-avatar">AK</div>
-        <div class="review-meta"><strong>Aoife Kelly</strong><span>Galway City</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
+      <div class="review-text">Massive selection, everything in perfect condition. Bought two rugs and both look class in my sitting room. Dead easy to deal with and delivery was super fast.</div>
+      <div class="review-footer"><div class="review-avatar">AK</div><div class="review-meta"><strong>Aoife Kelly</strong><span>Galway City</span></div><div class="review-verified">✓ Verified</div></div>
     </div>
-
     <div class="review-card">
       <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Fantastic service from start to finish. The rug I picked online was exactly what was delivered — no surprises. Great value for money and really fast delivery down to Wicklow. Five stars without question.</div>
-      <div class="review-footer">
-        <div class="review-avatar">DB</div>
-        <div class="review-meta"><strong>Declan Byrne</strong><span>Wicklow Town</span></div>
-        <div class="review-verified">✓ Verified</div>
-      </div>
+      <div class="review-text">Fantastic service from start to finish. The rug was exactly what was delivered — no surprises. Great value and really fast delivery to Wicklow. Five stars without question.</div>
+      <div class="review-footer"><div class="review-avatar">DB</div><div class="review-meta"><strong>Declan Byrne</strong><span>Wicklow Town</span></div><div class="review-verified">✓ Verified</div></div>
     </div>
-
   </div>
 
-  <!-- Dropdown toggle for remaining 41 reviews -->
-  <div class="reviews-toggle" id="reviewsToggle">
+  <div class="reviews-toggle fade-up" id="reviewsToggle">
     <div class="reviews-toggle-left">
       <div class="reviews-toggle-icon">⭐</div>
       <div class="reviews-toggle-label">
@@ -814,278 +1042,61 @@
   <div class="reviews-panel" id="reviewsPanel">
     <div class="reviews-panel-inner">
       <div class="review-grid">
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">I've been looking for the perfect rug for my hallway for months. Found 1st Class Rugs on WhatsApp and within an hour I had found exactly what I was after. Delivery to Limerick was super fast. Delighted with it!</div>
-          <div class="review-footer"><div class="review-avatar">NW</div><div class="review-meta"><strong>Niamh Walsh</strong><span>Limerick City</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Ordered a beautiful traditional-style rug for my mother's house and she was absolutely over the moon with it. The craftsmanship is top notch. Really easy to deal with and very fair prices. Will definitely be back.</div>
-          <div class="review-footer"><div class="review-avatar">CD</div><div class="review-meta"><strong>Ciarán Doyle</strong><span>Kilkenny City</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Got a gorgeous cream and gold rug for my bedroom — it completely transformed the room. The seller was brilliant, very patient with all my questions. Delivery was prompt and it was packaged really well. Highly recommend.</div>
-          <div class="review-footer"><div class="review-avatar">FN</div><div class="review-meta"><strong>Fionnuala Ní Bhriain</strong><span>Sligo Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Third time ordering from here now. Every single rug has been perfect. Brilliant quality, fair prices, and the service is second to none. There's nowhere else I'd go for rugs at this stage. Keep up the great work!</div>
-          <div class="review-footer"><div class="review-avatar">SB</div><div class="review-meta"><strong>Seamus Brennan</strong><span>Tipperary Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">I wasn't sure what size to go for and the lad helped me figure out exactly what would work in my sitting room. The rug arrived and it fits perfectly. So impressed with the whole experience. Fantastic company.</div>
-          <div class="review-footer"><div class="review-avatar">CD</div><div class="review-meta"><strong>Caoimhe Dolan</strong><span>Roscommon Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">All the way up in Donegal and they still delivered without any hassle. The rug is absolutely beautiful — heavy, well made, and the pattern is stunning. Completely changed the look of my sitting room. Mad value for money.</div>
-          <div class="review-footer"><div class="review-avatar">PO</div><div class="review-meta"><strong>Pádraig Ó Murchú</strong><span>Donegal Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">I did a full living room renovation and this rug was the centrepiece. It pulls the whole room together beautifully. The photos on the website don't do it justice — it's even better in person. Couldn't be happier.</div>
-          <div class="review-footer"><div class="review-avatar">RO</div><div class="review-meta"><strong>Rachel O'Sullivan</strong><span>Waterford City</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Super easy to deal with over WhatsApp. Got a large rug delivered to Dún Laoghaire without a bother. It's plush, well made, and looks incredible in our dining room. My wife is absolutely thrilled with it.</div>
-          <div class="review-footer"><div class="review-avatar">BF</div><div class="review-meta"><strong>Brian Fitzpatrick</strong><span>Dún Laoghaire</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Bought two rugs for the new house. Both are stunning — great quality and far better value than anything I'd seen in the shops. Delivery to Mayo was quick too. Will definitely be coming back for more. Highly recommended!</div>
-          <div class="review-footer"><div class="review-avatar">SC</div><div class="review-meta"><strong>Sinéad Connolly</strong><span>Westport, Mayo</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Got a massive rug for my open-plan kitchen/living area. It fits perfectly and softens the whole room. The service was friendly and efficient — answered all my WhatsApp queries straight away. Couldn't ask for more.</div>
-          <div class="review-footer"><div class="review-avatar">JQ</div><div class="review-meta"><strong>James Quinn</strong><span>Dundalk, Louth</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Was looking for something specific and they had exactly what I wanted. Delivery to Kildare was next day. Rug is thick, luxurious and the colours are gorgeous. My whole family has been commenting on it. Brilliant find!</div>
-          <div class="review-footer"><div class="review-avatar">OH</div><div class="review-meta"><strong>Orla Higgins</strong><span>Newbridge, Kildare</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Came across 1st Class Rugs through a friend's recommendation and I'm so glad I did. Great selection, brilliant service and the rug looks amazing in our front room. Quick delivery to Longford too. Would recommend to everyone.</div>
-          <div class="review-footer"><div class="review-avatar">LS</div><div class="review-meta"><strong>Liam Sheridan</strong><span>Longford Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">I was redecorating my sitting room and needed a statement rug. Found exactly what I was looking for here. The quality is outstanding — you can tell it's built to last. Great communication throughout too.</div>
-          <div class="review-footer"><div class="review-avatar">AM</div><div class="review-meta"><strong>Aisling Moran</strong><span>Athlone, Westmeath</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Fair play to these guys — the rug is class. Honestly better quality than stuff I've seen in expensive home stores. Easy to enquire over WhatsApp and delivery to Offaly was no problem at all. Delighted with it.</div>
-          <div class="review-footer"><div class="review-avatar">CF</div><div class="review-meta"><strong>Conor Flanagan</strong><span>Tullamore, Offaly</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Bought a beautiful large rug as a housewarming gift for my daughter. She was absolutely thrilled with it. Amazing quality and the price was very reasonable. The whole process from enquiry to delivery was seamless.</div>
-          <div class="review-footer"><div class="review-avatar">MD</div><div class="review-meta"><strong>Margaret Dunne</strong><span>Portlaoise, Laois</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Spotted a rug on the website and WhatsApp'd straight away. It was still available and arrived at my door in north Dublin the next morning. Looks incredible in my living room. Great price, great service. Highly recommend!</div>
-          <div class="review-footer"><div class="review-avatar">PR</div><div class="review-meta"><strong>Patrick Ryan</strong><span>Swords, Dublin</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Just moved into a new place and needed rugs for a few rooms. Got two from here and both are absolutely gorgeous. Good value, fast delivery to Carlow, and the guy was lovely to deal with. Will be back for more!</div>
-          <div class="review-footer"><div class="review-avatar">EC</div><div class="review-meta"><strong>Emma Cullen</strong><span>Carlow Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Sent a WhatsApp to ask a few questions and got an instant response with extra pictures and dimensions. Couldn't have asked for better customer service. The rug itself is beautiful — heavy, well made, and perfect in my hallway.</div>
-          <div class="review-footer"><div class="review-avatar">DM</div><div class="review-meta"><strong>Donal McCarthy</strong><span>Tralee, Kerry</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Absolutely love my new rug! It's plush, soft underfoot and the pattern is stunning. I've had loads of compliments on it already. Very easy to buy — just WhatsApp and it was sorted. Delivery to Clare was quick and hassle-free.</div>
-          <div class="review-footer"><div class="review-avatar">SN</div><div class="review-meta"><strong>Sorcha Ní Fhaoláin</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Great rug, great price and great service. The seller was really helpful and made sure I got exactly the right one for my room. It arrived perfectly rolled and in great condition. Very happy customer in Tipperary!</div>
-          <div class="review-footer"><div class="review-avatar">MK</div><div class="review-meta"><strong>Michael Keating</strong><span>Nenagh, Tipperary</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">I've bought rugs from shops and online before but nothing comes close to the quality here. The rug is thick, the colours are rich, and it's clearly going to last for years. Arrived fast to Dundalk. Absolutely buzzing with it!</div>
-          <div class="review-footer"><div class="review-avatar">CN</div><div class="review-meta"><strong>Ciara Nolan</strong><span>Dundalk, Louth</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Bought a gorgeous large rug for my living room. The quality is unreal — it's so soft and the colours are exactly as shown. Quick delivery to Wexford and great communication throughout. Will definitely be recommending to friends.</div>
-          <div class="review-footer"><div class="review-avatar">SM</div><div class="review-meta"><strong>Shane Madden</strong><span>Wexford Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Found this page while looking for rugs and I'm so glad I did. The selection is great, the prices are fair and the service is excellent. My rug arrived quickly to Meath and looks stunning in the dining room. Would recommend!</div>
-          <div class="review-footer"><div class="review-avatar">YB</div><div class="review-meta"><strong>Yvonne Brady</strong><span>Navan, Meath</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Ordered a large rug for the sitting room and the whole experience was flawless. Quick reply on WhatsApp, fair price, and it arrived in Letterkenny in great condition. Looks amazing — completely transformed the room. 10/10!</div>
-          <div class="review-footer"><div class="review-avatar">KM</div><div class="review-meta"><strong>Kevin Murray</strong><span>Letterkenny, Donegal</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">I wasn't expecting such great quality for the price. The rug is beautiful — heavy, well finished, and the pattern is stunning. Delivery to Monaghan was fast and the seller was brilliant to deal with. Very happy customer!</div>
-          <div class="review-footer"><div class="review-avatar">DC</div><div class="review-meta"><strong>Deirdre Cassidy</strong><span>Monaghan Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">My sitting room has never looked so well! The rug is exactly as described — thick, rich and absolutely class. The seller was sound and very helpful. Came all the way to Roscommon in no time. Great stuff altogether.</div>
-          <div class="review-footer"><div class="review-avatar">TF</div><div class="review-meta"><strong>Tommy Farrell</strong><span>Boyle, Roscommon</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Brilliant experience from start to finish. Sent a WhatsApp, got helpful replies straight away, and the rug arrived next day. It's soft, well made and looks absolutely stunning in my living room. 100% recommend to anyone looking for a quality rug!</div>
-          <div class="review-footer"><div class="review-avatar">CO</div><div class="review-meta"><strong>Claire O'Reilly</strong><span>Naas, Kildare</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Picked up a beautiful rug for our new house. Excellent quality and the colour is exactly as shown in the photos. Very easy to deal with and great value for money. Quick delivery to Ennis. Couldn't be more pleased with it!</div>
-          <div class="review-footer"><div class="review-avatar">GL</div><div class="review-meta"><strong>Gerard Lyons</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Ordered up north and they delivered without any issue. The rug is absolutely gorgeous — exactly what my living room needed. Super easy to deal with on WhatsApp and the price was very fair. Would definitely order again!</div>
-          <div class="review-footer"><div class="review-avatar">BM</div><div class="review-meta"><strong>Bronagh McAuley</strong><span>Newry, Co. Down</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Bought a gorgeous patterned rug for the dining room and it's transformed the whole space. The pile is deep and plush — really premium quality. The seller was so easy to deal with and delivery to Thurles was super fast.</div>
-          <div class="review-footer"><div class="review-avatar">LH</div><div class="review-meta"><strong>Lorraine Hennessy</strong><span>Thurles, Tipperary</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Very impressed with the quality and the service. I messaged about a rug I'd seen on the website and within an hour it was sorted and paid for. Arrived in Castlebar two days later in perfect condition. Dead happy with it!</div>
-          <div class="review-footer"><div class="review-avatar">AC</div><div class="review-meta"><strong>Aidan Costello</strong><span>Castlebar, Mayo</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Got a stunning rug for my bedroom — it's so soft underfoot and the colour is a perfect match for my décor. The seller was so accommodating and delivery to Killarney was hassle-free. Would absolutely recommend to anyone!</div>
-          <div class="review-footer"><div class="review-avatar">UO</div><div class="review-meta"><strong>Úna O'Dwyer</strong><span>Killarney, Kerry</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Ordered for the first time and was seriously impressed. Quick replies, great advice, and the rug arrived in perfect condition all the way to north Cork. Quality is top notch — much better than high street stores. Will order again!</div>
-          <div class="review-footer"><div class="review-avatar">SB</div><div class="review-meta"><strong>Stephen Barry</strong><span>Fermoy, Cork</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Very professional service. The rug I got is absolutely beautiful — great pattern, fantastic quality and really good value. Delivered quickly to Drogheda and arrived well wrapped. Everyone who's visited has commented on how lovely it is!</div>
-          <div class="review-footer"><div class="review-avatar">HS</div><div class="review-meta"><strong>Helen Smyth</strong><span>Drogheda, Louth</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Fuair mé ruga iontach ar fheabhas — cáilíocht den scoth agus praghas réasúnta. Sheol sé go Dún na nGall gan stró ar bith. Tá mé thar a bheith sásta leis. Molaim go hard é do cách!</div>
-          <div class="review-footer"><div class="review-avatar">RO</div><div class="review-meta"><strong>Ruairí Ó Gallchóir</strong><span>Falcarragh, Donegal</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Was a bit unsure about buying a rug without seeing it first but I needn't have worried — it was exactly as described and even better than expected. Delivery to Portlaoise was really quick. So glad I went for it. Absolutely love it!</div>
-          <div class="review-footer"><div class="review-avatar">JT</div><div class="review-meta"><strong>Jennifer Toomey</strong><span>Portlaoise, Laois</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Brilliant service from beginning to end. The rug I ordered is stunning — exactly the right size and colour for our living room. Delivered to Gorey in no time and packaged perfectly. Couldn't recommend these guys highly enough!</div>
-          <div class="review-footer"><div class="review-avatar">CW</div><div class="review-meta"><strong>Colm Whelan</strong><span>Gorey, Wexford</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Ceannnaigh mé ruga álainn do mo sheomra suí. Cáilíocht den chéad scoth agus an tseirbhís go hiontach. Seachadadh go tapa. Tá áthas an domhain orm leis. Go raibh míle maith agaibh!</div>
-          <div class="review-footer"><div class="review-avatar">MN</div><div class="review-meta"><strong>Máire Ní Cheallaigh</strong><span>An Cheathrú Rua, Galway</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Needed a rug quickly for a spare room before guests arrived and they came through — ordered in the morning and it was at my door in Cavan by next day. Absolute quality and brilliant service. Saved the day! Would recommend to anyone.</div>
-          <div class="review-footer"><div class="review-avatar">PC</div><div class="review-meta"><strong>Paul Corrigan</strong><span>Cavan Town</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Really lovely rugs and brilliant customer service. The seller went above and beyond to help me choose the right one. It arrived to Tullamore quickly and looks absolutely gorgeous in my hallway. Can't recommend them enough — class!</div>
-          <div class="review-footer"><div class="review-avatar">TM</div><div class="review-meta"><strong>Tracey Mullan</strong><span>Tullamore, Offaly</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Outstanding quality and outstanding service. I've bought several rugs from different places over the years and these are by far the best. Great patterns, great pile, and great value. Delivered to Clare without any issues. Highly recommended!</div>
-          <div class="review-footer"><div class="review-avatar">BO</div><div class="review-meta"><strong>Brendan O'Halloran</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Bought a beautiful runner for my hallway and a large rug for the sitting room. Both arrived quickly and are absolutely gorgeous. The seller was so helpful and friendly. By far the best place to buy rugs in Ireland. Will be back!</div>
-          <div class="review-footer"><div class="review-avatar">MO</div><div class="review-meta"><strong>Michelle O'Toole</strong><span>Bray, Wicklow</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">First time buying from here and definitely won't be the last. The rug is absolutely class — thick, beautiful pattern and great quality. WhatsApp communication was instant and delivery was the next day. Couldn't be happier!</div>
-          <div class="review-footer"><div class="review-avatar">DK</div><div class="review-meta"><strong>Damien Kennedy</strong><span>Ballinasloe, Galway</span></div><div class="review-verified">✓ Verified</div></div>
-        </div>
-
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Found exactly what I was after within an hour. Delivery to Limerick was super fast. Delighted with it!</div><div class="review-footer"><div class="review-avatar">NW</div><div class="review-meta"><strong>Niamh Walsh</strong><span>Limerick City</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Ordered a traditional rug for my mother's house and she was absolutely over the moon. Top notch craftsmanship and very fair prices. Will definitely be back.</div><div class="review-footer"><div class="review-avatar">CD</div><div class="review-meta"><strong>Ciarán Doyle</strong><span>Kilkenny City</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Got a gorgeous cream and gold rug for my bedroom — it completely transformed the room. Very patient with all my questions. Delivery was prompt and packaged really well.</div><div class="review-footer"><div class="review-avatar">FN</div><div class="review-meta"><strong>Fionnuala Ní Bhriain</strong><span>Sligo Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Third time ordering now. Every rug has been perfect. Brilliant quality, fair prices, service second to none. There's nowhere else I'd go for rugs.</div><div class="review-footer"><div class="review-avatar">SB</div><div class="review-meta"><strong>Seamus Brennan</strong><span>Tipperary Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Helped me figure out exactly what size would work in my sitting room. The rug arrived and fits perfectly. So impressed with the whole experience.</div><div class="review-footer"><div class="review-avatar">CD</div><div class="review-meta"><strong>Caoimhe Dolan</strong><span>Roscommon Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">All the way up in Donegal and they still delivered without hassle. Heavy, well made and the pattern is stunning. Mad value for money.</div><div class="review-footer"><div class="review-avatar">PO</div><div class="review-meta"><strong>Pádraig Ó Murchú</strong><span>Donegal Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Did a full living room renovation and this rug was the centrepiece. The photos don't do it justice — it's even better in person. Couldn't be happier.</div><div class="review-footer"><div class="review-avatar">RO</div><div class="review-meta"><strong>Rachel O'Sullivan</strong><span>Waterford City</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Super easy over WhatsApp. Got a large rug delivered to Dún Laoghaire without a bother. Plush, well made, looks incredible in our dining room.</div><div class="review-footer"><div class="review-avatar">BF</div><div class="review-meta"><strong>Brian Fitzpatrick</strong><span>Dún Laoghaire</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Bought two rugs for the new house. Both stunning — great quality and far better value than anything in the shops. Delivery to Mayo was quick too.</div><div class="review-footer"><div class="review-avatar">SC</div><div class="review-meta"><strong>Sinéad Connolly</strong><span>Westport, Mayo</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Got a massive rug for my open-plan kitchen and living area. Fits perfectly and softens the whole room. Answered all WhatsApp queries straight away.</div><div class="review-footer"><div class="review-avatar">JQ</div><div class="review-meta"><strong>James Quinn</strong><span>Dundalk, Louth</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Had exactly what I wanted. Delivery to Kildare was next day. Thick, luxurious and the colours are gorgeous. My whole family has commented on it.</div><div class="review-footer"><div class="review-avatar">OH</div><div class="review-meta"><strong>Orla Higgins</strong><span>Newbridge, Kildare</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Came through a friend's recommendation. Great selection, brilliant service and the rug looks amazing in our front room. Quick delivery to Longford too.</div><div class="review-footer"><div class="review-avatar">LS</div><div class="review-meta"><strong>Liam Sheridan</strong><span>Longford Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Needed a statement rug for my sitting room renovation. Found exactly what I was looking for. Quality is outstanding — you can tell it's built to last.</div><div class="review-footer"><div class="review-avatar">AM</div><div class="review-meta"><strong>Aisling Moran</strong><span>Athlone, Westmeath</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Honestly better quality than expensive home stores. Easy to enquire over WhatsApp and delivery to Offaly was no problem. Delighted with it.</div><div class="review-footer"><div class="review-avatar">CF</div><div class="review-meta"><strong>Conor Flanagan</strong><span>Tullamore, Offaly</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Bought a large rug as a housewarming gift for my daughter. She was thrilled. Amazing quality and very reasonable price. Seamless from enquiry to delivery.</div><div class="review-footer"><div class="review-avatar">MD</div><div class="review-meta"><strong>Margaret Dunne</strong><span>Portlaoise, Laois</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">WhatsApp'd straight away, still available and arrived in north Dublin the next morning. Looks incredible in my living room. Great price, great service.</div><div class="review-footer"><div class="review-avatar">PR</div><div class="review-meta"><strong>Patrick Ryan</strong><span>Swords, Dublin</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Just moved and needed rugs for a few rooms. Got two from here and both are gorgeous. Good value, fast delivery to Carlow. Will be back for more!</div><div class="review-footer"><div class="review-avatar">EC</div><div class="review-meta"><strong>Emma Cullen</strong><span>Carlow Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Instant response with extra pictures and dimensions. Couldn't have asked for better service. The rug itself is beautiful — heavy, well made, perfect in my hallway.</div><div class="review-footer"><div class="review-avatar">DM</div><div class="review-meta"><strong>Donal McCarthy</strong><span>Tralee, Kerry</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Absolutely love my new rug! Plush, soft underfoot, stunning pattern. Loads of compliments. Just WhatsApp and it was sorted. Delivery to Clare hassle-free.</div><div class="review-footer"><div class="review-avatar">SN</div><div class="review-meta"><strong>Sorcha Ní Fhaoláin</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Great rug, great price, great service. Made sure I got exactly the right one. Arrived perfectly rolled and in great condition. Very happy customer!</div><div class="review-footer"><div class="review-avatar">MK</div><div class="review-meta"><strong>Michael Keating</strong><span>Nenagh, Tipperary</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Nothing comes close to the quality here. Thick, rich colours, going to last for years. Arrived fast to Dundalk. Absolutely buzzing with it!</div><div class="review-footer"><div class="review-avatar">CN</div><div class="review-meta"><strong>Ciara Nolan</strong><span>Dundalk, Louth</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Quality is unreal — so soft and colours exactly as shown. Quick delivery to Wexford and great communication. Will definitely be recommending to friends.</div><div class="review-footer"><div class="review-avatar">SM</div><div class="review-meta"><strong>Shane Madden</strong><span>Wexford Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Great selection, fair prices and excellent service. My rug arrived quickly to Meath and looks stunning in the dining room. Would recommend!</div><div class="review-footer"><div class="review-avatar">YB</div><div class="review-meta"><strong>Yvonne Brady</strong><span>Navan, Meath</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Quick reply on WhatsApp, fair price, arrived in Letterkenny in great condition. Completely transformed the room. 10/10!</div><div class="review-footer"><div class="review-avatar">KM</div><div class="review-meta"><strong>Kevin Murray</strong><span>Letterkenny, Donegal</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Wasn't expecting such great quality for the price. Heavy, well finished, stunning pattern. Delivery to Monaghan was fast. Very happy customer!</div><div class="review-footer"><div class="review-avatar">DC</div><div class="review-meta"><strong>Deirdre Cassidy</strong><span>Monaghan Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">My sitting room has never looked so well! Thick, rich and absolutely class. Came all the way to Roscommon in no time. Great stuff altogether.</div><div class="review-footer"><div class="review-avatar">TF</div><div class="review-meta"><strong>Tommy Farrell</strong><span>Boyle, Roscommon</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Sent a WhatsApp, got helpful replies straight away, rug arrived next day. Soft, well made and stunning in my living room. 100% recommend!</div><div class="review-footer"><div class="review-avatar">CO</div><div class="review-meta"><strong>Claire O'Reilly</strong><span>Naas, Kildare</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Excellent quality and colour exactly as shown. Very easy to deal with, great value. Quick delivery to Ennis. Couldn't be more pleased!</div><div class="review-footer"><div class="review-avatar">GL</div><div class="review-meta"><strong>Gerard Lyons</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Ordered up north and they delivered without any issue. Absolutely gorgeous — exactly what my living room needed. Very fair price. Would definitely order again!</div><div class="review-footer"><div class="review-avatar">BM</div><div class="review-meta"><strong>Bronagh McAuley</strong><span>Newry, Co. Down</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Gorgeous patterned rug for the dining room — transformed the whole space. Deep, plush pile, really premium quality. Delivery to Thurles was super fast.</div><div class="review-footer"><div class="review-avatar">LH</div><div class="review-meta"><strong>Lorraine Hennessy</strong><span>Thurles, Tipperary</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Within an hour of messaging it was sorted and paid for. Arrived in Castlebar two days later in perfect condition. Dead happy with it!</div><div class="review-footer"><div class="review-avatar">AC</div><div class="review-meta"><strong>Aidan Costello</strong><span>Castlebar, Mayo</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">So soft underfoot and the colour is a perfect match for my décor. So accommodating and delivery to Killarney was hassle-free. Would absolutely recommend!</div><div class="review-footer"><div class="review-avatar">UO</div><div class="review-meta"><strong>Úna O'Dwyer</strong><span>Killarney, Kerry</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Quick replies, great advice, and arrived in perfect condition all the way to north Cork. Much better than high street stores. Will order again!</div><div class="review-footer"><div class="review-avatar">SB</div><div class="review-meta"><strong>Stephen Barry</strong><span>Fermoy, Cork</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Very professional service. Beautiful rug — great pattern, fantastic quality and really good value. Delivered quickly to Drogheda and arrived well wrapped.</div><div class="review-footer"><div class="review-avatar">HS</div><div class="review-meta"><strong>Helen Smyth</strong><span>Drogheda, Louth</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Fuair mé ruga iontach ar fheabhas — cáilíocht den scoth agus praghas réasúnta. Sheol sé go Dún na nGall gan stró ar bith. Molaim go hard é!</div><div class="review-footer"><div class="review-avatar">RO</div><div class="review-meta"><strong>Ruairí Ó Gallchóir</strong><span>Falcarragh, Donegal</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Was unsure about buying without seeing it first but I needn't have worried — exactly as described and even better than expected. Delivery to Portlaoise really quick.</div><div class="review-footer"><div class="review-avatar">JT</div><div class="review-meta"><strong>Jennifer Toomey</strong><span>Portlaoise, Laois</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Brilliant service from beginning to end. Stunning rug — exactly the right size and colour. Delivered to Gorey in no time and packaged perfectly.</div><div class="review-footer"><div class="review-avatar">CW</div><div class="review-meta"><strong>Colm Whelan</strong><span>Gorey, Wexford</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Ceannnaigh mé ruga álainn do mo sheomra suí. Cáilíocht den chéad scoth agus an tseirbhís go hiontach. Tá áthas an domhain orm leis!</div><div class="review-footer"><div class="review-avatar">MN</div><div class="review-meta"><strong>Máire Ní Cheallaigh</strong><span>An Cheathrú Rua, Galway</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Ordered in the morning and it was at my door in Cavan by next day. Absolute quality and brilliant service. Saved the day! Would recommend to anyone.</div><div class="review-footer"><div class="review-avatar">PC</div><div class="review-meta"><strong>Paul Corrigan</strong><span>Cavan Town</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Went above and beyond to help me choose the right one. Arrived to Tullamore quickly and looks gorgeous in my hallway. Can't recommend enough!</div><div class="review-footer"><div class="review-avatar">TM</div><div class="review-meta"><strong>Tracey Mullan</strong><span>Tullamore, Offaly</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">By far the best I've bought from anywhere. Great patterns, great pile, great value. Delivered to Clare without any issues. Highly recommended!</div><div class="review-footer"><div class="review-avatar">BO</div><div class="review-meta"><strong>Brendan O'Halloran</strong><span>Ennis, Clare</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">Bought a runner and a large rug. Both arrived quickly and are gorgeous. By far the best place to buy rugs in Ireland. Will be back!</div><div class="review-footer"><div class="review-avatar">MO</div><div class="review-meta"><strong>Michelle O'Toole</strong><span>Bray, Wicklow</span></div><div class="review-verified">✓ Verified</div></div></div>
+        <div class="review-card"><div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="review-text">First time buying and definitely won't be the last. Absolutely class — thick, beautiful pattern and great quality. Communication instant and delivery next day.</div><div class="review-footer"><div class="review-avatar">DK</div><div class="review-meta"><strong>Damien Kennedy</strong><span>Ballinasloe, Galway</span></div><div class="review-verified">✓ Verified</div></div></div>
       </div>
     </div>
   </div>
-
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <div class="contact-left">
+    <div class="contact-left fade-up">
       <div class="section-tag">Get In Touch</div>
       <h2>Interested in a Rug?</h2>
-      <p>Drop us a WhatsApp or give us a call. We're happy to answer questions, send extra photos, and arrange delivery anywhere in Ireland.</p>
+      <p>Drop us a WhatsApp or give us a call. We'll answer questions, send extra photos, and arrange delivery anywhere in Ireland.</p>
       <div class="contact-details">
         <div class="contact-detail">
           <div class="contact-detail-icon">📍</div>
@@ -1098,19 +1109,12 @@
           <div class="contact-detail-icon">📞</div>
           <div>
             <strong>+353 86 845 5654</strong>
-            <span>Mobile · Call or WhatsApp anytime</span>
-          </div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">☎️</div>
-          <div>
-            <strong>091 673 637</strong>
-            <span>Landline</span>
+            <span>Call or WhatsApp anytime</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="contact-right">
+    <div class="contact-right fade-up">
       <a href="https://wa.me/353868455654" class="contact-btn contact-btn-whatsapp" target="_blank">
         <div class="contact-btn-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L0 24l6.335-1.512A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.803 9.803 0 01-5.001-1.37l-.36-.214-3.757.897.944-3.658-.234-.376A9.796 9.796 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
@@ -1125,17 +1129,8 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         </div>
         <div class="contact-btn-text">
-          <span>Mobile · Call Now</span>
+          <span>Call Us Now</span>
           +353 86 845 5654
-        </div>
-      </a>
-      <a href="tel:+35391673637" class="contact-btn contact-btn-call">
-        <div class="contact-btn-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-        </div>
-        <div class="contact-btn-text">
-          <span>Landline</span>
-          091 673 637
         </div>
       </a>
     </div>
@@ -1144,22 +1139,18 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="images/logo.png" alt="1st Class Rugs" style="height:70px;width:auto;opacity:0.85;" /></div>
-  <p>Premium rugs delivered free across Ireland &nbsp;·&nbsp; +353 86 845 5654 &nbsp;·&nbsp; 091 673 637<br />© 2026 1st Class Rugs. All rights reserved.</p>
+  <div class="footer-logo"><img src="images/logo.png" alt="1st Class Rugs" style="height:76px;width:auto;opacity:0.88;" /></div>
+  <p>Premium rugs delivered free across Ireland &nbsp;·&nbsp; +353 86 845 5654<br />© 2026 1st Class Rugs. All rights reserved.</p>
 </footer>
 
 <!-- FLOATING BUTTONS -->
 <div class="floating-btns">
   <a href="https://wa.me/353868455654" class="fab fab-wa" target="_blank">
-    <span class="fab-icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L0 24l6.335-1.512A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.803 9.803 0 01-5.001-1.37l-.36-.214-3.757.897.944-3.658-.234-.376A9.796 9.796 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-    </span>
+    <span class="fab-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L0 24l6.335-1.512A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.803 9.803 0 01-5.001-1.37l-.36-.214-3.757.897.944-3.658-.234-.376A9.796 9.796 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg></span>
     <span class="fab-label">WhatsApp</span>
   </a>
   <a href="tel:+353868455654" class="fab fab-call">
-    <span class="fab-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-    </span>
+    <span class="fab-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></span>
     <span class="fab-label">Call Now</span>
   </a>
 </div>
@@ -1175,39 +1166,23 @@
 
 <script>
   const images = [
-    "WhatsApp_Image_2026-05-19_at_17.34.07.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.08.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.08_1.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.08_2.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.08_3.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.08_4.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.08_5.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.08_6.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_1.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_2.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_3.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_4.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_5.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_6.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_7.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_8.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.34.09_9.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_1.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_10.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_11.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_12.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_13.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_2.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_3.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_4.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_5.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_6.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_7.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_8.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_9.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.27_9.jpeg"
+    "WhatsApp_Image_2026-05-19_at_17.34.07.jpeg","WhatsApp_Image_2026-05-19_at_17.34.08.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.08_1.jpeg","WhatsApp_Image_2026-05-19_at_17.34.08_2.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.08_3.jpeg","WhatsApp_Image_2026-05-19_at_17.34.08_4.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.08_5.jpeg","WhatsApp_Image_2026-05-19_at_17.34.08_6.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.09.jpeg","WhatsApp_Image_2026-05-19_at_17.34.09_1.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.09_2.jpeg","WhatsApp_Image_2026-05-19_at_17.34.09_3.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.09_4.jpeg","WhatsApp_Image_2026-05-19_at_17.34.09_5.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.09_6.jpeg","WhatsApp_Image_2026-05-19_at_17.34.09_7.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.34.09_8.jpeg","WhatsApp_Image_2026-05-19_at_17.34.09_9.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.27.jpeg","WhatsApp_Image_2026-05-19_at_17.36.27_1.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.27_10.jpeg","WhatsApp_Image_2026-05-19_at_17.36.27_11.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.27_12.jpeg","WhatsApp_Image_2026-05-19_at_17.36.27_13.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.27_2.jpeg","WhatsApp_Image_2026-05-19_at_17.36.27_3.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.27_4.jpeg","WhatsApp_Image_2026-05-19_at_17.36.27_5.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.27_6.jpeg","WhatsApp_Image_2026-05-19_at_17.36.27_7.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.27_8.jpeg","WhatsApp_Image_2026-05-19_at_17.36.27_9.jpeg",
+    "WhatsApp_Image_2026-05-19_at_17.36.28.jpeg"
   ];
 
   const waNumber = "353868455654";
@@ -1220,17 +1195,17 @@
     card.className = 'rug-card';
     card.innerHTML = `
       <div class="rug-img-wrap">
-        <img src="images/${img}" alt="Rug ${i + 1}" loading="lazy" />
+        <img src="images/${img}" alt="Rug ${i+1}" loading="lazy" />
+        <div class="rug-overlay"><span class="rug-overlay-text">View Full Size</span></div>
         <div class="in-stock-badge">In Stock</div>
       </div>
       <div class="rug-info">
         <div>
-          <div class="rug-name">Rug #${i + 1}</div>
+          <div class="rug-name">Rug #${i+1}</div>
           <div class="rug-sub">Available Now &middot; Free Delivery</div>
         </div>
-        <a href="https://wa.me/${waNumber}?text=Hi%2C%20I'm%20interested%20in%20Rug%20%23${i + 1}%20from%20your%20website!" class="enquire-btn" target="_blank">Enquire</a>
-      </div>
-    `;
+        <a href="https://wa.me/${waNumber}?text=Hi%2C%20I'm%20interested%20in%20Rug%20%23${i+1}%20from%20your%20website!" class="enquire-btn" target="_blank">Enquire</a>
+      </div>`;
     card.querySelector('.rug-img-wrap').addEventListener('click', () => openLightbox(i));
     gallery.appendChild(card);
   });
@@ -1243,27 +1218,20 @@
   function openLightbox(idx) {
     currentIdx = idx;
     lbImg.src = `images/${images[idx]}`;
-    lbCaption.textContent = `Rug ${idx + 1} of ${images.length}`;
+    lbCaption.textContent = `Rug ${idx+1} of ${images.length}`;
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
-  function closeLightbox() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
+  function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
   function stepLightbox(dir) {
     currentIdx = (currentIdx + dir + images.length) % images.length;
     lbImg.src = `images/${images[currentIdx]}`;
-    lbCaption.textContent = `Rug ${currentIdx + 1} of ${images.length}`;
+    lbCaption.textContent = `Rug ${currentIdx+1} of ${images.length}`;
   }
-
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   document.getElementById('lbPrev').addEventListener('click', () => stepLightbox(-1));
   document.getElementById('lbNext').addEventListener('click', () => stepLightbox(1));
   lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -1271,42 +1239,61 @@
     if (e.key === 'ArrowRight') stepLightbox(1);
   });
 
-  // Stock gallery dropdown toggle
-  const stockToggle  = document.getElementById('stockToggle');
+  // Stock gallery toggle
+  const stockToggle = document.getElementById('stockToggle');
   const galleryPanel = document.getElementById('galleryPanel');
-
   stockToggle.addEventListener('click', () => {
     const isOpen = galleryPanel.classList.contains('open');
     galleryPanel.classList.toggle('open');
     stockToggle.classList.toggle('open');
-    if (!isOpen) {
-      setTimeout(() => stockToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
-    }
+    if (!isOpen) setTimeout(() => stockToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
   });
 
-  // Reviews dropdown toggle
+  // Reviews toggle
   const reviewsToggle = document.getElementById('reviewsToggle');
-  const reviewsPanel  = document.getElementById('reviewsPanel');
-
+  const reviewsPanel = document.getElementById('reviewsPanel');
   reviewsToggle.addEventListener('click', () => {
     const isOpen = reviewsPanel.classList.contains('open');
     reviewsPanel.classList.toggle('open');
     reviewsToggle.classList.toggle('open');
-    if (!isOpen) {
-      setTimeout(() => reviewsToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
-    }
+    if (!isOpen) setTimeout(() => reviewsToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
   });
 
-  // Hero "View All Rugs" button opens the dropdown
-  const heroStockBtn = document.getElementById('heroStockBtn');
-  if (heroStockBtn) {
-    heroStockBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      galleryPanel.classList.add('open');
-      stockToggle.classList.add('open');
-      setTimeout(() => stockToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
-    });
+  // Hero button opens gallery
+  document.getElementById('heroStockBtn').addEventListener('click', e => {
+    e.preventDefault();
+    galleryPanel.classList.add('open');
+    stockToggle.classList.add('open');
+    setTimeout(() => stockToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+  });
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
   }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
