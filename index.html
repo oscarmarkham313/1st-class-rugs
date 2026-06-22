@@ -3,31 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1st Class Rugs — Premium Rugs, Galway Ireland</title>
-  <meta name="description" content="1st Class Rugs — Premium quality rugs available in Galway, Ireland. Browse our stunning collection and enquire today." />
+  <title>1st Class Rugs — Premium Rugs | Free Nationwide Delivery Ireland</title>
+  <meta name="description" content="1st Class Rugs — Premium quality rugs delivered free across all of Ireland. Browse our stunning collection and order today." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --gold: #c9a84c;
-      --gold-light: #e8c97a;
-      --dark: #0e0e0e;
-      --dark2: #161616;
-      --dark3: #1e1e1e;
-      --card: #1a1a1a;
-      --text: #f0ece4;
-      --muted: #9e9a94;
-      --border: rgba(201,168,76,0.2);
+      --accent: #c9a84c;
+      --accent-dark: #a8893a;
+      --bg: #ffffff;
+      --bg2: #f6f6f4;
+      --text: #1a1a1a;
+      --muted: #777;
+      --border: #e0e0e0;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--dark);
+      background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
@@ -40,68 +38,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 40px;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(12px);
+      padding: 14px 40px;
+      background: #fff;
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .nav-logo img {
-      height: 52px;
-      width: auto;
-      display: block;
-      filter: drop-shadow(0 2px 8px rgba(201,168,76,0.18));
-      transition: opacity 0.2s;
-    }
-
-    .nav-logo img:hover { opacity: 0.88; }
-
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 48px; width: auto; display: block; }
     .nav-logo span { display: none; }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
-      color: var(--muted);
+      color: var(--text);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
       transition: color 0.2s;
     }
-
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover { color: var(--accent); }
 
     .nav-cta {
-      background: var(--gold);
-      color: var(--dark) !important;
-      padding: 10px 22px;
+      background: var(--accent) !important;
+      color: #fff !important;
+      padding: 9px 20px;
       border-radius: 4px;
-      font-weight: 600 !important;
-      color: #111 !important;
-      transition: background 0.2s, transform 0.15s !important;
+      font-weight: 700 !important;
     }
-
-    .nav-cta:hover {
-      background: var(--gold-light) !important;
-      color: var(--dark) !important;
-      transform: translateY(-1px);
-    }
+    .nav-cta:hover { background: var(--accent-dark) !important; }
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -117,137 +84,82 @@
       background-image: url('images/WhatsApp_Image_2026-05-19_at_17.36.27.jpeg');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.28);
-      transform: scale(1.05);
-      animation: heroZoom 20s ease-in-out infinite alternate;
+      filter: brightness(0.32);
     }
 
-    @keyframes heroZoom {
-      from { transform: scale(1.05); }
-      to   { transform: scale(1.12); }
-    }
-
-    .hero-content {
-      position: relative;
-      max-width: 780px;
-    }
+    .hero-content { position: relative; max-width: 760px; }
 
     .hero-badge {
       display: inline-block;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 0.75rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: #fff;
+      font-size: 0.74rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      padding: 8px 20px;
-      border-radius: 50px;
-      margin-bottom: 28px;
+      padding: 7px 18px;
+      border-radius: 4px;
+      margin-bottom: 22px;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      font-weight: 900;
-      line-height: 1.08;
-      margin-bottom: 24px;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
       color: #fff;
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--gold);
-    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
 
     .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(240,236,228,0.8);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.85);
       line-height: 1.7;
-      margin-bottom: 44px;
-      font-weight: 300;
-      max-width: 560px;
+      margin-bottom: 36px;
+      max-width: 540px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .hero-btns {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--gold);
-      color: #111;
+      background: var(--accent);
+      color: #fff;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 16px 36px;
-      border-radius: 6px;
+      font-size: 0.95rem;
+      padding: 14px 32px;
+      border-radius: 4px;
       text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      letter-spacing: 0.02em;
+      transition: background 0.2s;
     }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
+    .btn-primary:hover { background: var(--accent-dark); }
 
     .btn-outline {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 2px solid rgba(255,255,255,0.35);
+      border: 2px solid rgba(255,255,255,0.65);
       color: #fff;
       font-weight: 600;
-      font-size: 1rem;
-      padding: 14px 32px;
-      border-radius: 6px;
+      font-size: 0.95rem;
+      padding: 12px 28px;
+      border-radius: 4px;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      transition: border-color 0.2s, background 0.2s;
     }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
 
-    .btn-outline:hover {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.12);
-      transform: translateY(-2px);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-    }
-
-    .scroll-hint::after {
-      content: '';
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--muted), transparent);
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
-    }
+    .scroll-hint { display: none; }
 
     /* ── FEATURES ── */
     .features {
-      background: var(--dark2);
+      background: var(--bg2);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
@@ -255,528 +167,393 @@
     .features-inner {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 60px 40px;
+      padding: 48px 40px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 28px;
       text-align: center;
     }
 
-    .feature-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .feature-icon {
-      width: 54px;
-      height: 54px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      background: rgba(201,168,76,0.08);
-    }
-
-    .feature-item h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .feature-item p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .feature-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .feature-icon { font-size: 1.8rem; }
+    .feature-item h3 { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .feature-item p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
 
     /* ── SECTION HEADER ── */
-    .section-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
+    .section-header { text-align: center; margin-bottom: 44px; }
     .section-tag {
       display: inline-block;
-      color: var(--gold);
-      font-size: 0.72rem;
-      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
-
     .section-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
-
-    .section-header p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .gold-divider {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(to right, var(--gold), var(--gold-light));
-      margin: 20px auto 0;
-      border-radius: 2px;
-    }
+    .section-header p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 500px; margin: 0 auto; }
+    .gold-divider { width: 48px; height: 3px; background: var(--accent); margin: 14px auto 0; border-radius: 2px; }
 
     /* ── STOCK GALLERY ── */
-    .stock {
-      padding: 60px 40px 100px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+    .stock { padding: 60px 40px 80px; max-width: 1300px; margin: 0 auto; }
 
-    /* Dropdown toggle bar */
     .stock-toggle {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--card);
+      background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 32px;
+      border-radius: 8px;
+      padding: 20px 28px;
       cursor: pointer;
       user-select: none;
-      transition: border-color 0.25s, background 0.25s;
-      margin-bottom: 0;
+      transition: border-color 0.2s;
     }
+    .stock-toggle:hover { border-color: var(--accent); }
+    .stock-toggle.open { border-radius: 8px 8px 0 0; border-color: var(--accent); border-bottom-color: transparent; }
 
-    .stock-toggle:hover {
-      border-color: rgba(201,168,76,0.5);
-      background: rgba(201,168,76,0.05);
-    }
+    .stock-toggle-left { display: flex; align-items: center; gap: 14px; }
+    .stock-toggle-icon { font-size: 1.4rem; }
+    .stock-toggle-label h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .stock-toggle-label span { font-size: 0.8rem; color: var(--muted); margin-top: 2px; display: block; }
 
-    .stock-toggle.open {
-      border-radius: 12px 12px 0 0;
-      border-color: rgba(201,168,76,0.45);
-      border-bottom-color: transparent;
-    }
-
-    .stock-toggle-left {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .stock-toggle-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .stock-toggle-label h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .stock-toggle-label span {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 2px;
-      display: block;
-    }
-
-    .stock-toggle-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+    .stock-toggle-right { display: flex; align-items: center; gap: 12px; }
 
     .stock-count-pill {
-      background: rgba(201,168,76,0.12);
-      border: 1px solid var(--border);
-      color: var(--gold);
-      font-size: 0.8rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.78rem;
       font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 50px;
-      letter-spacing: 0.05em;
+      padding: 5px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
     }
 
     .stock-toggle-arrow {
-      width: 34px;
-      height: 34px;
+      width: 30px; height: 30px;
       border: 1px solid var(--border);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      transition: transform 0.35s ease, border-color 0.25s;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      transition: transform 0.3s ease;
     }
+    .stock-toggle.open .stock-toggle-arrow { transform: rotate(180deg); }
 
-    .stock-toggle.open .stock-toggle-arrow {
-      transform: rotate(180deg);
-      border-color: rgba(201,168,76,0.5);
-    }
-
-    /* Collapsible panel */
     .gallery-panel {
       overflow: hidden;
       max-height: 0;
-      transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid rgba(201,168,76,0.45);
+      transition: max-height 0.5s ease;
+      border: 1px solid var(--accent);
       border-top: none;
-      border-radius: 0 0 12px 12px;
-      background: rgba(201,168,76,0.02);
+      border-radius: 0 0 8px 8px;
     }
-
-    .gallery-panel.open {
-      max-height: 9999px;
-      transition: max-height 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .gallery-panel-inner {
-      padding: 28px;
-    }
+    .gallery-panel.open { max-height: 9999px; }
+    .gallery-panel-inner { padding: 24px; }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
     }
 
     .rug-card {
-      background: var(--card);
+      background: #fff;
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
       cursor: pointer;
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
+    .rug-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); border-color: #ccc; }
 
-    .rug-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.4);
-      border-color: rgba(201,168,76,0.4);
-    }
-
-    .rug-img-wrap {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-    }
-
-    .rug-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .rug-card:hover .rug-img-wrap img {
-      transform: scale(1.06);
-    }
-
-    .rug-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
-    }
-
-    .rug-card:hover .rug-overlay {
-      background: rgba(0,0,0,0.4);
-    }
-
-    .rug-overlay-text {
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.3s, transform 0.3s;
-      border: 1px solid rgba(255,255,255,0.6);
-      padding: 10px 22px;
-      border-radius: 4px;
-    }
-
-    .rug-card:hover .rug-overlay-text {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .rug-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3; }
+    .rug-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .rug-overlay { display: none; }
+    .rug-overlay-text { display: none; }
 
     .in-stock-badge {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(10,10,10,0.85);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 0.65rem;
+      top: 10px; left: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.63rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 50px;
+      padding: 4px 10px;
+      border-radius: 4px;
     }
 
     .rug-info {
-      padding: 18px 20px;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-
-    .rug-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .rug-sub {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 3px;
-    }
+    .rug-name { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+    .rug-sub { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
 
     .enquire-btn {
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
+      background: var(--accent);
+      border: none;
+      color: #fff;
       font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 8px 16px;
+      font-weight: 700;
+      padding: 8px 14px;
       border-radius: 4px;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
       white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .enquire-btn:hover { background: var(--accent-dark); }
+
+    /* ── REVIEWS ── */
+    .reviews { padding: 80px 40px; max-width: 1300px; margin: 0 auto; }
+
+    .reviews-summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
     }
 
-    .enquire-btn:hover {
-      background: var(--gold);
-      color: var(--dark);
+    .reviews-score { text-align: center; }
+    .reviews-score .big-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .reviews-score .score-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
+
+    .reviews-divider { width: 1px; height: 70px; background: var(--border); }
+
+    .reviews-stars-summary { display: flex; flex-direction: column; gap: 6px; }
+    .stars-row { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--muted); }
+    .stars-row .bar { width: 130px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .stars-row .bar-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
     }
 
-    /* ── CONTACT SECTION ── */
-    .contact {
-      background: var(--dark2);
+    .review-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .review-card:hover { border-color: #bbb; }
+
+    .review-stars { display: flex; gap: 2px; }
+    .review-stars span { color: var(--accent); font-size: 0.95rem; }
+
+    .review-text { font-size: 0.9rem; color: var(--text); line-height: 1.65; flex: 1; font-style: italic; }
+    .review-text::before { content: '\201C'; }
+    .review-text::after  { content: '\201D'; }
+
+    .review-footer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       border-top: 1px solid var(--border);
-      padding: 100px 40px;
+      padding-top: 12px;
+    }
+
+    .review-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #f5ead5;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.82rem; color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .review-meta strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .review-meta span { font-size: 0.74rem; color: var(--muted); }
+    .review-verified { margin-left: auto; font-size: 0.68rem; color: #2e7d50; display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
+
+    /* Reviews toggle */
+    .reviews-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 28px;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.2s;
+      margin-top: 28px;
+    }
+    .reviews-toggle:hover { border-color: var(--accent); }
+    .reviews-toggle.open { border-radius: 8px 8px 0 0; border-color: var(--accent); border-bottom-color: transparent; }
+
+    .reviews-toggle-left { display: flex; align-items: center; gap: 14px; }
+    .reviews-toggle-icon { font-size: 1.3rem; }
+    .reviews-toggle-label h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .reviews-toggle-label span { font-size: 0.8rem; color: var(--muted); margin-top: 2px; display: block; }
+
+    .reviews-toggle-right { display: flex; align-items: center; gap: 12px; }
+
+    .reviews-count-pill {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .reviews-toggle-arrow {
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+    }
+    .reviews-toggle.open .reviews-toggle-arrow { transform: rotate(180deg); }
+
+    .reviews-panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+      border: 1px solid var(--accent);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+    }
+    .reviews-panel.open { max-height: 9999px; }
+    .reviews-panel-inner { padding: 24px; }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 80px 40px;
     }
 
     .contact-inner {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+      gap: 60px;
+      align-items: start;
     }
 
     .contact-left h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
+    .contact-left p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; }
 
-    .contact-left p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 36px;
-    }
+    .contact-details { display: flex; flex-direction: column; gap: 14px; }
 
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+    .contact-detail { display: flex; align-items: flex-start; gap: 12px; }
+    .contact-detail-icon { font-size: 1.1rem; margin-top: 2px; }
+    .contact-detail strong { display: block; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .contact-detail span { font-size: 0.87rem; color: var(--muted); }
 
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: var(--text);
-    }
-
-    .contact-detail-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(201,168,76,0.1);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .contact-detail span {
-      font-size: 0.92rem;
-      color: var(--muted);
-    }
-
-    .contact-detail strong {
-      display: block;
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .contact-right {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+    .contact-right { display: flex; flex-direction: column; gap: 12px; }
 
     .contact-btn {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 20px 24px;
-      border-radius: 10px;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1px solid transparent;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      transition: border-color 0.2s;
     }
 
-    .contact-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
+    .contact-btn-whatsapp { background: #128c5e; color: #fff; border-color: #128c5e; }
+    .contact-btn-whatsapp:hover { background: #0e7a52; }
 
-    .contact-btn-whatsapp {
-      background: #128c5e;
-      color: #fff;
-      border-color: #1aad75;
-    }
-
-    .contact-btn-call {
-      background: rgba(201,168,76,0.12);
-      color: var(--gold);
-      border-color: var(--border);
-    }
-
-    .contact-btn-call:hover {
-      background: var(--gold);
-      color: var(--dark);
-      border-color: var(--gold);
-    }
+    .contact-btn-call:hover { border-color: var(--accent); }
 
     .contact-btn-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
+      width: 40px; height: 40px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
       flex-shrink: 0;
     }
+    .contact-btn-call .contact-btn-icon { background: var(--bg2); }
 
     .contact-btn-text span {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 400;
       opacity: 0.75;
       margin-bottom: 2px;
     }
+    .contact-btn-call .contact-btn-text span { opacity: 1; color: var(--muted); }
 
     /* ── FOOTER ── */
     footer {
-      background: #080808;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 40px;
+      background: #1a1a1a;
+      padding: 36px 40px;
       text-align: center;
     }
 
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-
-    footer p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .footer-logo { margin-bottom: 10px; }
+    footer p { font-size: 0.8rem; color: #999; line-height: 1.6; }
 
     /* ── FLOATING BUTTONS ── */
     .floating-btns {
       position: fixed;
-      bottom: 30px;
-      right: 24px;
+      bottom: 24px;
+      right: 20px;
       z-index: 200;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
       align-items: flex-end;
     }
 
     .fab {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
-      padding: 14px 22px 14px 16px;
+      padding: 12px 18px 12px 14px;
       border-radius: 50px;
       font-weight: 700;
-      font-size: 0.9rem;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.5);
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 0.88rem;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
       white-space: nowrap;
     }
+    .fab:hover { opacity: 0.92; }
 
-    .fab:hover {
-      transform: scale(1.06) translateY(-2px);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.6);
-    }
-
-    .fab-wa {
-      background: #25d366;
-      color: #fff;
-    }
-
-    .fab-call {
-      background: var(--gold);
-      color: #111;
-    }
-
-    .fab-icon {
-      font-size: 1.3rem;
-    }
+    .fab-wa { background: #25d366; color: #fff; }
+    .fab-call { background: var(--accent); color: #fff; }
+    .fab-icon { font-size: 1.2rem; }
 
     /* ── LIGHTBOX ── */
     .lightbox {
@@ -784,38 +561,30 @@
       position: fixed;
       inset: 0;
       z-index: 999;
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.9);
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
-
-    .lightbox.open {
-      display: flex;
-    }
+    .lightbox.open { display: flex; }
 
     .lightbox-img {
       max-width: 90vw;
       max-height: 88vh;
       object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+      border-radius: 6px;
     }
 
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 24px;
+      top: 16px; right: 20px;
       color: #fff;
       font-size: 2rem;
       cursor: pointer;
-      line-height: 1;
-      opacity: 0.7;
-      transition: opacity 0.2s;
       background: none;
       border: none;
+      opacity: 0.8;
     }
-
     .lightbox-close:hover { opacity: 1; }
 
     .lightbox-prev,
@@ -823,320 +592,40 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.15);
+      border: none;
       color: #fff;
       font-size: 1.6rem;
-      width: 50px;
-      height: 50px;
+      width: 48px; height: 48px;
       border-radius: 50%;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center;
     }
-
-    .lightbox-prev:hover,
-    .lightbox-next:hover { background: rgba(255,255,255,0.22); }
-
-    .lightbox-prev { left: 16px; }
-    .lightbox-next { right: 16px; }
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
 
     .lightbox-caption {
       position: absolute;
-      bottom: 20px;
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
-      color: var(--muted);
+      color: #aaa;
       font-size: 0.8rem;
-      letter-spacing: 0.08em;
     }
 
     /* ── RESPONSIVE ── */
-    /* ── REVIEWS ── */
-    .reviews {
-      padding: 100px 40px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .reviews-summary {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 60px;
-      flex-wrap: wrap;
-    }
-
-    .reviews-score {
-      text-align: center;
-    }
-
-    .reviews-score .big-score {
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .reviews-score .score-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 6px;
-    }
-
-    .reviews-divider {
-      width: 1px;
-      height: 80px;
-      background: var(--border);
-    }
-
-    .reviews-stars-summary {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .stars-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    .stars-row .bar {
-      width: 140px;
-      height: 5px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .stars-row .bar-fill {
-      height: 100%;
-      background: var(--gold);
-      border-radius: 3px;
-    }
-
-    .review-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .review-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .review-card:hover {
-      border-color: rgba(201,168,76,0.4);
-      transform: translateY(-3px);
-    }
-
-    .review-stars {
-      display: flex;
-      gap: 3px;
-    }
-
-    .review-stars span {
-      color: var(--gold);
-      font-size: 1rem;
-    }
-
-    .review-text {
-      font-size: 0.92rem;
-      color: var(--text);
-      line-height: 1.7;
-      flex: 1;
-      font-style: italic;
-    }
-
-    .review-text::before { content: '\201C'; }
-    .review-text::after  { content: '\201D'; }
-
-    .review-footer {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 14px;
-    }
-
-    .review-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .review-meta strong {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .review-meta span {
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
-
-    .review-verified {
-      margin-left: auto;
-      font-size: 0.68rem;
-      color: #4caf7d;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-
-    /* Reviews dropdown toggle */
-    .reviews-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 32px;
-      cursor: pointer;
-      user-select: none;
-      transition: border-color 0.25s, background 0.25s;
-      margin-top: 36px;
-    }
-
-    .reviews-toggle:hover {
-      border-color: rgba(201,168,76,0.5);
-      background: rgba(201,168,76,0.05);
-    }
-
-    .reviews-toggle.open {
-      border-radius: 12px 12px 0 0;
-      border-color: rgba(201,168,76,0.45);
-      border-bottom-color: transparent;
-    }
-
-    .reviews-toggle-left {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .reviews-toggle-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .reviews-toggle-label h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .reviews-toggle-label span {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 2px;
-      display: block;
-    }
-
-    .reviews-toggle-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .reviews-count-pill {
-      background: rgba(201,168,76,0.12);
-      border: 1px solid var(--border);
-      color: var(--gold);
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 50px;
-      letter-spacing: 0.05em;
-    }
-
-    .reviews-toggle-arrow {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      transition: transform 0.35s ease, border-color 0.25s;
-      flex-shrink: 0;
-    }
-
-    .reviews-toggle.open .reviews-toggle-arrow {
-      transform: rotate(180deg);
-      border-color: rgba(201,168,76,0.5);
-    }
-
-    .reviews-panel {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid rgba(201,168,76,0.45);
-      border-top: none;
-      border-radius: 0 0 12px 12px;
-      background: rgba(201,168,76,0.02);
-    }
-
-    .reviews-panel.open {
-      max-height: 9999px;
-      transition: max-height 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .reviews-panel-inner {
-      padding: 28px;
-    }
-
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
+      nav { padding: 12px 16px; }
       .nav-links { display: none; }
-      .stock { padding: 70px 20px; }
-      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-      .contact { padding: 70px 20px; }
-      .contact-inner { grid-template-columns: 1fr; gap: 50px; }
-      .features-inner { padding: 50px 20px; }
+      .stock { padding: 50px 16px 60px; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+      .reviews { padding: 60px 16px; }
+      .contact { padding: 60px 20px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .features-inner { padding: 36px 16px; }
       .fab span.fab-label { display: none; }
-      .fab { padding: 14px; }
-      footer { padding: 30px 20px; }
+      .fab { padding: 12px; }
+      footer { padding: 28px 16px; }
     }
   </style>
 </head>
@@ -1159,9 +648,9 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-badge">Galway, Ireland &nbsp;·&nbsp; Premium Rugs</div>
+    <div class="hero-badge">Free Nationwide Delivery &nbsp;·&nbsp; All of Ireland</div>
     <h1>Exceptional Rugs,<br /><em>1st Class</em> Quality</h1>
-    <p>Handpicked rugs for every style and space. Browse our stunning collection and transform your home today — available in Galway and nationwide delivery.</p>
+    <p>Handpicked rugs for every style and space. Browse our stunning collection and transform your home today — with free nationwide delivery across all of Ireland.</p>
     <div class="hero-btns">
       <a href="#stock" class="btn-primary" id="heroStockBtn">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -1173,7 +662,6 @@
       </a>
     </div>
   </div>
-  <div class="scroll-hint">Scroll</div>
 </section>
 
 <!-- FEATURES -->
@@ -1186,8 +674,8 @@
     </div>
     <div class="feature-item">
       <div class="feature-icon">🚚</div>
-      <h3>Nationwide Delivery</h3>
-      <p>Based in Galway, we deliver beautiful rugs across all of Ireland.</p>
+      <h3>Free Nationwide Delivery</h3>
+      <p>We deliver to every county across Ireland — fast and completely free.</p>
     </div>
     <div class="feature-item">
       <div class="feature-icon">💬</div>
@@ -1207,17 +695,16 @@
   <div class="section-header">
     <div class="section-tag">Currently Available</div>
     <h2>In Stock Now</h2>
-    <p>Click below to browse our full collection — all rugs available today in Galway.</p>
+    <p>Click below to browse our full collection — all rugs available with free nationwide delivery.</p>
     <div class="gold-divider"></div>
   </div>
 
-  <!-- Dropdown toggle bar -->
   <div class="stock-toggle" id="stockToggle">
     <div class="stock-toggle-left">
       <div class="stock-toggle-icon">🪞</div>
       <div class="stock-toggle-label">
         <h3>Browse All Rugs</h3>
-        <span>Click to view our full stock — 33 rugs available</span>
+        <span>Click to view our full stock — 33 rugs available with free delivery</span>
       </div>
     </div>
     <div class="stock-toggle-right">
@@ -1228,7 +715,6 @@
     </div>
   </div>
 
-  <!-- Collapsible gallery panel -->
   <div class="gallery-panel" id="galleryPanel">
     <div class="gallery-panel-inner">
       <div class="gallery-grid" id="gallery">
@@ -1250,7 +736,7 @@
   <div class="reviews-summary">
     <div class="reviews-score">
       <div class="big-score">4.9</div>
-      <div style="color:var(--gold);font-size:1.3rem;margin:6px 0;">★★★★★</div>
+      <div style="color:var(--accent);font-size:1.3rem;margin:6px 0;">★★★★★</div>
       <div class="score-label">Based on 45 reviews</div>
     </div>
     <div class="reviews-divider"></div>
@@ -1288,7 +774,7 @@
 
     <div class="review-card">
       <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <div class="review-text">Being based in Galway myself I popped over to have a look in person. Massive selection, everything in perfect condition. Bought two rugs and both look class in my sitting room. Dead handy being able to see them before buying.</div>
+      <div class="review-text">Massive selection, everything in perfect condition. Bought two rugs and both look class in my sitting room. Dead easy to deal with over WhatsApp and delivery was super fast.</div>
       <div class="review-footer">
         <div class="review-avatar">AK</div>
         <div class="review-meta"><strong>Aoife Kelly</strong><span>Galway City</span></div>
@@ -1325,7 +811,6 @@
     </div>
   </div>
 
-  <!-- Collapsible panel with the remaining 41 reviews -->
   <div class="reviews-panel" id="reviewsPanel">
     <div class="reviews-panel-inner">
       <div class="review-grid">
@@ -1482,7 +967,7 @@
 
         <div class="review-card">
           <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">My sitting room has never looked so well! The rug is exactly as described — thick, rich and absolutely class. The seller was sound and very helpful. Came all the way from Galway to Roscommon in no time. Great stuff altogether.</div>
+          <div class="review-text">My sitting room has never looked so well! The rug is exactly as described — thick, rich and absolutely class. The seller was sound and very helpful. Came all the way to Roscommon in no time. Great stuff altogether.</div>
           <div class="review-footer"><div class="review-avatar">TF</div><div class="review-meta"><strong>Tommy Farrell</strong><span>Boyle, Roscommon</span></div><div class="review-verified">✓ Verified</div></div>
         </div>
 
@@ -1554,7 +1039,7 @@
 
         <div class="review-card">
           <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">Ceannnaigh mé ruga álainn do mo sheomra suí. Cáilíocht den chéad scoth agus an tseirbhís go hiontach. Seachadadh go Gaillimh go tapa. Tá áthas an domhain orm leis. Go raibh míle maith agaibh!</div>
+          <div class="review-text">Ceannnaigh mé ruga álainn do mo sheomra suí. Cáilíocht den chéad scoth agus an tseirbhís go hiontach. Seachadadh go tapa. Tá áthas an domhain orm leis. Go raibh míle maith agaibh!</div>
           <div class="review-footer"><div class="review-avatar">MN</div><div class="review-meta"><strong>Máire Ní Cheallaigh</strong><span>An Cheathrú Rua, Galway</span></div><div class="review-verified">✓ Verified</div></div>
         </div>
 
@@ -1584,7 +1069,7 @@
 
         <div class="review-card">
           <div class="review-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <div class="review-text">First time buying from here and definitely won't be the last. The rug is absolutely class — thick, beautiful pattern and great quality. WhatsApp communication was instant and delivery to Galway was the next day. Couldn't be happier!</div>
+          <div class="review-text">First time buying from here and definitely won't be the last. The rug is absolutely class — thick, beautiful pattern and great quality. WhatsApp communication was instant and delivery was the next day. Couldn't be happier!</div>
           <div class="review-footer"><div class="review-avatar">DK</div><div class="review-meta"><strong>Damien Kennedy</strong><span>Ballinasloe, Galway</span></div><div class="review-verified">✓ Verified</div></div>
         </div>
 
@@ -1600,13 +1085,13 @@
     <div class="contact-left">
       <div class="section-tag">Get In Touch</div>
       <h2>Interested in a Rug?</h2>
-      <p>Drop us a WhatsApp message or give us a call. We're happy to answer questions, arrange viewings, and sort delivery across Ireland.</p>
+      <p>Drop us a WhatsApp or give us a call. We're happy to answer questions, send extra photos, and arrange delivery anywhere in Ireland.</p>
       <div class="contact-details">
         <div class="contact-detail">
           <div class="contact-detail-icon">📍</div>
           <div>
-            <strong>Galway, Ireland</strong>
-            <span>Serving all of Ireland</span>
+            <strong>Ireland</strong>
+            <span>Free delivery to every county</span>
           </div>
         </div>
         <div class="contact-detail">
@@ -1620,7 +1105,7 @@
           <div class="contact-detail-icon">☎️</div>
           <div>
             <strong>091 673 637</strong>
-            <span>Landline · Galway</span>
+            <span>Landline</span>
           </div>
         </div>
       </div>
@@ -1649,7 +1134,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         </div>
         <div class="contact-btn-text">
-          <span>Landline · Galway</span>
+          <span>Landline</span>
           091 673 637
         </div>
       </a>
@@ -1659,8 +1144,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="images/logo.png" alt="1st Class Rugs" style="height:80px;width:auto;opacity:0.9;" /></div>
-  <p>Premium rugs in Galway, Ireland &nbsp;·&nbsp; +353 86 845 5654 &nbsp;·&nbsp; 091 673 637<br />© 2026 1st Class Rugs. All rights reserved.</p>
+  <div class="footer-logo"><img src="images/logo.png" alt="1st Class Rugs" style="height:70px;width:auto;opacity:0.85;" /></div>
+  <p>Premium rugs delivered free across Ireland &nbsp;·&nbsp; +353 86 845 5654 &nbsp;·&nbsp; 091 673 637<br />© 2026 1st Class Rugs. All rights reserved.</p>
 </footer>
 
 <!-- FLOATING BUTTONS -->
@@ -1722,7 +1207,7 @@
     "WhatsApp_Image_2026-05-19_at_17.36.27_7.jpeg",
     "WhatsApp_Image_2026-05-19_at_17.36.27_8.jpeg",
     "WhatsApp_Image_2026-05-19_at_17.36.27_9.jpeg",
-    "WhatsApp_Image_2026-05-19_at_17.36.28.jpeg"
+    "WhatsApp_Image_2026-05-19_at_17.36.27_9.jpeg"
   ];
 
   const waNumber = "353868455654";
@@ -1736,13 +1221,12 @@
     card.innerHTML = `
       <div class="rug-img-wrap">
         <img src="images/${img}" alt="Rug ${i + 1}" loading="lazy" />
-        <div class="rug-overlay"><span class="rug-overlay-text">View Full Size</span></div>
         <div class="in-stock-badge">In Stock</div>
       </div>
       <div class="rug-info">
         <div>
           <div class="rug-name">Rug #${i + 1}</div>
-          <div class="rug-sub">Available Now · Galway</div>
+          <div class="rug-sub">Available Now &middot; Free Delivery</div>
         </div>
         <a href="https://wa.me/${waNumber}?text=Hi%2C%20I'm%20interested%20in%20Rug%20%23${i + 1}%20from%20your%20website!" class="enquire-btn" target="_blank">Enquire</a>
       </div>
@@ -1795,8 +1279,6 @@
     const isOpen = galleryPanel.classList.contains('open');
     galleryPanel.classList.toggle('open');
     stockToggle.classList.toggle('open');
-
-    // Scroll to toggle if opening so user sees the panel drop down
     if (!isOpen) {
       setTimeout(() => stockToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
     }
@@ -1825,12 +1307,6 @@
       setTimeout(() => stockToggle.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
     });
   }
-
-  // Sticky nav shadow on scroll
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.5)' : '';
-  });
 </script>
 </body>
 </html>
