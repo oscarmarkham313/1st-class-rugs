@@ -960,7 +960,7 @@
     sessionStorage.setItem('popupSeen', '1');
   }
   if (!sessionStorage.getItem('popupSeen')) {
-    setTimeout(() => { document.getElementById('popup').classList.add('active'); }, 1500);
+    setTimeout(() => { document.getElementById('popup').classList.add('active'); }, 2000);
   }
   document.getElementById('popupClose').addEventListener('click', closePopup);
   document.getElementById('popupDismiss').addEventListener('click', closePopup);
