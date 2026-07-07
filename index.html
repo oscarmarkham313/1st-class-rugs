@@ -65,39 +65,56 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 56px;
-      background: #0a0a2c;
+      padding: 22px 56px;
       transition: background 0.45s, padding 0.45s, border-color 0.45s;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(10,10,44,0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 13px 56px;
-      border-bottom-color: rgba(255,255,255,0.13);
+      background: rgba(250,248,245,0.97);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 14px 56px;
+      border-bottom-color: var(--border);
     }
-    .nav-logo img { height: 44px; width: auto; transition: opacity 0.2s; }
-    .nav-logo img:hover { opacity: 0.72; }
+    /* CSS text logo — "dR" monogram */
+    .nav-logo { text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .nav-logo-mark { position: relative; height: 42px; width: 46px; }
+    .nav-logo-d {
+      position: absolute; top: 0; left: 0;
+      font-family: 'Cormorant Garant', serif; font-style: italic;
+      font-size: 42px; font-weight: 500; color: var(--dark);
+      line-height: 1; letter-spacing: -0.04em;
+    }
+    .nav-logo-r {
+      position: absolute; top: 4px; left: 20px;
+      font-family: 'Cormorant Garant', serif; font-style: italic;
+      font-size: 42px; font-weight: 500; color: var(--dark);
+      line-height: 1; letter-spacing: -0.04em;
+    }
+    .nav-logo-name {
+      font-family: 'Inter', sans-serif; font-size: 0.55rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dark); font-weight: 400;
+    }
     .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
     .nav-links a {
-      color: rgba(255,255,255,0.62); text-decoration: none;
+      color: var(--mid); text-decoration: none;
       font-size: 0.71rem; font-weight: 500;
       letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s;
     }
-    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover { color: var(--dark); }
     .nav-cta {
-      background: var(--accent) !important; color: #1c1a17 !important;
+      background: var(--dark) !important; color: #fff !important;
       padding: 9px 22px; font-size: 0.71rem !important;
-      font-weight: 700 !important; letter-spacing: 0.14em !important;
+      font-weight: 600 !important; letter-spacing: 0.14em !important;
       transition: background 0.2s !important;
     }
-    .nav-cta:hover { background: var(--accent2) !important; color: #fff !important; }
+    .nav-cta:hover { background: var(--accent2) !important; }
     .nav-hamburger {
       display: none; flex-direction: column; gap: 5px;
       background: none; border: none; cursor: pointer; padding: 4px; z-index: 310;
     }
-    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: rgba(255,255,255,0.82); transition: transform 0.3s, opacity 0.3s; }
+    .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: var(--dark); transition: transform 0.3s, opacity 0.3s; }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -116,9 +133,10 @@
       position: absolute; inset: 0;
       background: linear-gradient(
         to right,
-        rgba(250,248,245,0.88) 0%,
-        rgba(250,248,245,0.48) 38%,
-        rgba(250,248,245,0) 62%
+        rgba(250,248,245,1) 0%,
+        rgba(250,248,245,0.98) 38%,
+        rgba(250,248,245,0.6) 52%,
+        rgba(250,248,245,0) 68%
       );
     }
 
@@ -550,7 +568,11 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <img src="images/logo.png" alt="1st Class Rugs" />
+    <div class="nav-logo-mark">
+      <span class="nav-logo-d">d</span>
+      <span class="nav-logo-r">R</span>
+    </div>
+    <span class="nav-logo-name">1ST CLASS RUGS</span>
   </a>
   <ul class="nav-links">
     <li><a href="#collection">Collection</a></li>
