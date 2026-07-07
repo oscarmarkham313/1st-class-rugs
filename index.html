@@ -76,26 +76,14 @@
       padding: 14px 56px;
       border-bottom-color: var(--border);
     }
-    /* CSS text logo — "dR" monogram */
-    .nav-logo { text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-    .nav-logo-mark { position: relative; height: 42px; width: 46px; }
-    .nav-logo-d {
-      position: absolute; top: 0; left: 0;
-      font-family: 'Cormorant Garant', serif; font-style: italic;
-      font-size: 42px; font-weight: 500; color: var(--dark);
-      line-height: 1; letter-spacing: -0.04em;
+    .nav-logo { text-decoration: none; display: block; }
+    .nav-logo img {
+      height: 72px; width: auto;
+      filter: invert(1) sepia(1) brightness(0.72);
+      mix-blend-mode: multiply;
+      transition: opacity 0.2s;
     }
-    .nav-logo-r {
-      position: absolute; top: 4px; left: 20px;
-      font-family: 'Cormorant Garant', serif; font-style: italic;
-      font-size: 42px; font-weight: 500; color: var(--dark);
-      line-height: 1; letter-spacing: -0.04em;
-    }
-    .nav-logo-name {
-      font-family: 'Inter', sans-serif; font-size: 0.55rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--dark); font-weight: 400;
-    }
+    .nav-logo img:hover { opacity: 0.72; }
     .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
     .nav-links a {
       color: var(--mid); text-decoration: none;
@@ -497,8 +485,12 @@
     .popup-overlay.active .popup-box { transform: translateY(0) scale(1); }
     .popup-close { position: absolute; top: 13px; right: 17px; background: none; border: none; color: var(--light); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
     .popup-close:hover { color: var(--dark); }
-    .popup-logo { width: 58px; margin: 0 auto 16px; }
-    .popup-logo img { width: 100%; }
+    .popup-logo { width: 140px; margin: 0 auto 16px; }
+    .popup-logo img {
+      width: 100%;
+      filter: invert(1) sepia(1) brightness(0.72);
+      mix-blend-mode: multiply;
+    }
     .popup-eye { font-size: 0.64rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent2); margin-bottom: 12px; }
     .popup-box h3 { font-family: 'Cormorant Garant', serif; font-size: 1.7rem; font-weight: 600; color: var(--dark); margin: 0 0 10px; line-height: 1.2; }
     .popup-rule { width: 38px; height: 1px; background: var(--accent); margin: 0 auto 18px; }
@@ -568,11 +560,7 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">
-      <span class="nav-logo-d">d</span>
-      <span class="nav-logo-r">R</span>
-    </div>
-    <span class="nav-logo-name">1ST CLASS RUGS</span>
+    <img src="images/logo.png" alt="1st Class Rugs" />
   </a>
   <ul class="nav-links">
     <li><a href="#collection">Collection</a></li>
