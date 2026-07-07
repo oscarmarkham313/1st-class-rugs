@@ -76,9 +76,12 @@
       padding: 14px 56px;
       border-bottom-color: var(--border);
     }
-    .nav-logo { text-decoration: none; display: block; }
+    .nav-logo {
+      text-decoration: none; display: inline-block;
+      background: var(--bg); isolation: isolate; line-height: 0;
+    }
     .nav-logo img {
-      height: 72px; width: auto;
+      height: 72px; width: auto; display: block;
       filter: invert(1) sepia(1) saturate(1.6) hue-rotate(4deg) brightness(0.88);
       mix-blend-mode: multiply;
       transition: opacity 0.2s;
@@ -485,9 +488,12 @@
     .popup-overlay.active .popup-box { transform: translateY(0) scale(1); }
     .popup-close { position: absolute; top: 13px; right: 17px; background: none; border: none; color: var(--light); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
     .popup-close:hover { color: var(--dark); }
-    .popup-logo { width: 140px; margin: 0 auto 16px; }
+    .popup-logo {
+      width: 140px; margin: 0 auto 16px;
+      background: var(--bg); isolation: isolate; line-height: 0;
+    }
     .popup-logo img {
-      width: 100%;
+      width: 100%; display: block;
       filter: invert(1) sepia(1) saturate(1.6) hue-rotate(4deg) brightness(0.88);
       mix-blend-mode: multiply;
     }
